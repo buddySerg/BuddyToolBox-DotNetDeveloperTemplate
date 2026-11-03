@@ -1,0 +1,72 @@
+
+############################
+# Build / Output
+############################
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+out/
+logs/
+
+############################
+# Visual Studio
+############################
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+############################
+# Rider / VS Code (optional)
+############################
+.idea/
+.vscode/
+
+############################
+# NuGet
+############################
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+
+############################
+# Logs / Temp
+############################
+*.log
+*.tmp
+*.temp
+~$*
+
+############################
+# Test / Coverage
+############################
+TestResults/
+*.trx
+coverage*
+BenchmarkDotNet.Artifacts/
+
+############################
+# .NET Core / SDK
+############################
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+############################
+# Secrets / Env
+############################
+.env
+.env.*
+*.secret
+*.key
+
+############################
+# OS
+############################
+Thumbs.db
+.DS_Store

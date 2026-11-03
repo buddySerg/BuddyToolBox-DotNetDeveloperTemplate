@@ -1,0 +1,109 @@
+<UserControl
+    x:Class="BTB.Features.Users.UsersView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:core="clr-namespace:BTB.Core.Base"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+
+        <core:BindingProxy x:Key="ViewModelProxy" Data="{Binding}" />
+
+    </UserControl.Resources>
+
+    <Grid Background="{DynamicResource Brush.Content}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+
+        <!--  TopBar  -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!--  TopBar Label  -->
+            <Label
+                Grid.Column="0"
+                Content="{Binding Translate[Features.Users.ContentLabel]}"
+                Style="{StaticResource Content.Label}" />
+
+            <!--  TopBar Buttons  -->
+            <StackPanel
+                Grid.Column="1"
+                Margin="0,0,0,10"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal">
+                <ui:Button
+                    Command="{Binding RefreshCommand}"
+                    Icon="{ui:SymbolIcon Symbol=ArrowClockwise24}"
+                    ToolTip="{Binding Translate[Common.Reset]}" />
+            </StackPanel>
+        </Grid>
+
+        <!--  Content  -->
+        <ui:DataGrid
+            Grid.Row="1"
+            AutoGenerateColumns="False"
+            CanUserAddRows="False"
+            ItemsSource="{Binding Users}"
+            SelectionMode="Extended"
+            SelectionUnit="FullRow">
+            <ui:DataGrid.Columns>
+
+                <DataGridTemplateColumn Width="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn Binding="{Binding FullName}" Header="{Binding Data.Translate[Features.Users.FullName], Source={StaticResource ViewModelProxy}}" />
+                <DataGridTextColumn Binding="{Binding Gender}" Header="{Binding Data.Translate[Features.Users.Gender], Source={StaticResource ViewModelProxy}}" />
+                <DataGridTextColumn Binding="{Binding UserName}" Header="{Binding Data.Translate[Features.Users.UserName], Source={StaticResource ViewModelProxy}}" />
+                <DataGridTextColumn Binding="{Binding Initials}" Header="{Binding Data.Translate[Features.Users.Initials], Source={StaticResource ViewModelProxy}}" />
+                <DataGridTextColumn Binding="{Binding Email}" Header="{Binding Data.Translate[Features.Users.Email], Source={StaticResource ViewModelProxy}}" />
+                <DataGridTextColumn Binding="{Binding Phone}" Header="{Binding Data.Translate[Features.Users.Phone], Source={StaticResource ViewModelProxy}}" />
+                <DataGridTextColumn Binding="{Binding City}" Header="{Binding Data.Translate[Features.Users.City], Source={StaticResource ViewModelProxy}}" />
+                <DataGridTextColumn Binding="{Binding Country}" Header="{Binding Data.Translate[Features.Users.Country], Source={StaticResource ViewModelProxy}}" />
+
+            </ui:DataGrid.Columns>
+        </ui:DataGrid>
+
+        <!--  Bottom Buttons  -->
+        <StackPanel
+            Grid.Row="2"
+            Margin="0,15,0,0"
+            Orientation="Horizontal">
+
+            <ui:Button
+                Margin="0,0,0,0"
+                Command="{Binding AddCommand}"
+                Content="{Binding Translate[Features.Users.AddUser]}"
+                Icon="{ui:SymbolIcon Symbol=PersonAdd24}" />
+
+            <ui:Button
+                Margin="10,0,0,0"
+                Command="{Binding EditCommand}"
+                Content="{Binding Translate[Features.Users.EditUser]}"
+                Icon="{ui:SymbolIcon Symbol=PersonEdit24}" />
+
+            <ui:Button
+                Margin="10,0,0,0"
+                Appearance="Danger"
+                Command="{Binding DeleteCommand}"
+                Content="{Binding Translate[Features.Users.DeleteUser]}"
+                Icon="{ui:SymbolIcon Symbol=PersonDelete24}" />
+
+        </StackPanel>
+    </Grid>
+
+</UserControl>

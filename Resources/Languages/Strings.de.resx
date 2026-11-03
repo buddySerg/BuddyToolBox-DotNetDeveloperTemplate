@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Common.Apply" xml:space="preserve">
+    <value>Übernehmen</value>
+  </data>
+  <data name="Common.Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="Common.Close" xml:space="preserve">
+    <value>Schließen</value>
+  </data>
+  <data name="Dialog.Confirmation" xml:space="preserve">
+    <value>Bestätigung</value>
+  </data>
+  <data name="Dialog.Error" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="Common.No" xml:space="preserve">
+    <value>Nein</value>
+  </data>
+  <data name="Features.Settings.MenuLabel" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="Features.Users.ContentLabel" xml:space="preserve">
+    <value>Benutzer</value>
+  </data>
+  <data name="Features.Users.MenuLabel" xml:space="preserve">
+    <value>Benutzer</value>
+  </data>
+  <data name="Common.Yes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="Common.Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="Dialog.Info" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="Dialog.About" xml:space="preserve">
+    <value>Über</value>
+  </data>
+  <data name="Common.Delete" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="App.Quote" xml:space="preserve">
+    <value>Good software starts with a solid foundation.</value>
+  </data>
+  <data name="App.Name" xml:space="preserve">
+    <value>BuddyToolbox - Developer Template</value>
+  </data>
+  <data name="Features.Settings.ContentLabel" xml:space="preserve">
+    <value>Einstellungen (global)</value>
+  </data>
+  <data name="Features.Users.AddUser" xml:space="preserve">
+    <value>Benutzer hinzufügen</value>
+  </data>
+  <data name="Features.Users.EditUser" xml:space="preserve">
+    <value>Benutzer bearbeiten</value>
+  </data>
+  <data name="Features.Users.DeleteUser" xml:space="preserve">
+    <value>Benutzer löschen</value>
+  </data>
+  <data name="Features.Users.Refresh" xml:space="preserve">
+    <value>Aktualisieren</value>
+  </data>
+  <data name="Features.Settings.GeneralSettings" xml:space="preserve">
+    <value>Allgemeine Einstellungen</value>
+  </data>
+  <data name="Features.Settings.MaxItems" xml:space="preserve">
+    <value>Max Items</value>
+  </data>
+  <data name="Features.Settings.LoggingSettings" xml:space="preserve">
+    <value>Logging Einstellungen</value>
+  </data>
+  <data name="Features.Settings.DatabaseSettings" xml:space="preserve">
+    <value>Datenbank Einstellungen</value>
+  </data>
+  <data name="Features.Settings.LoggingLevel" xml:space="preserve">
+    <value>Logging Stuffe</value>
+  </data>
+  <data name="Features.Settings.ConnectionSuccessful" xml:space="preserve">
+    <value>Die Verbindung wurde erfolgreich hergestellt.
+
+Server: {0}
+Datenbank: {1}
+SQL Server: {2}
+</value>
+  </data>
+  <data name="Features.Settings.ConnectionFailed" xml:space="preserve">
+    <value>Verbindung fehlgeschlagen.
+
+Fehler: {0}
+Nummer:{1}
+</value>
+  </data>
+  <data name="Common.Reset" xml:space="preserve">
+    <value>Zurücksetzen</value>
+  </data>
+  <data name="Features.Settings.TestConnection" xml:space="preserve">
+    <value>Datenbank Verbindung testen</value>
+  </data>
+  <data name="Common.Save" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="Features.Settings.ApplicationSettingsSavedSuccessfully" xml:space="preserve">
+    <value>Die Anwendungseinstellungen wurden erfolgreich gespeichert.</value>
+  </data>
+  <data name="Features.Settings.ApplicationSettingsSaveFailed" xml:space="preserve">
+    <value>Das Speichern der Anwendungseinstellungen ist fehlgeschlagen.</value>
+  </data>
+  <data name="Features.Settings.ApplicationSettingsCouldNotBeLoaded" xml:space="preserve">
+    <value>Die Anwendungseinstellungen konnten nicht geladen werden.</value>
+  </data>
+  <data name="Features.Settings.RefreshConfirmation" xml:space="preserve">
+    <value>Es gibt nicht gespeicherte Änderungen. 
+
+Möchten Sie diese verwerfen und die Einstellungen neu laden?</value>
+  </data>
+  <data name="Features.Settings.ApplicationSettingsReloaded" xml:space="preserve">
+    <value>Die Anwendungseinstellungen wurden erfolgreich neu geladen.</value>
+  </data>
+  <data name="Features.Settings.ApplicationSettingsRefreshFailed" xml:space="preserve">
+    <value>Die Anwendungseinstellungen konnten nicht aktualisiert werden.</value>
+  </data>
+  <data name="App.Description" xml:space="preserve">
+    <value>Moderne, featurebasierte MVVM-Anwendungsvorlage mit Navigation, Lokalisierung, Dependency Injection und Konfigurationsverwaltung.</value>
+  </data>
+  <data name="Splash.StartingServices" xml:space="preserve">
+    <value>Einstellungen werden geladen...</value>
+  </data>
+  <data name="Splash.LoadingSettings" xml:space="preserve">
+    <value>Einstellungen werden geladen...</value>
+  </data>
+  <data name="Splash.UpdatingDatabase" xml:space="preserve">
+    <value>Datenbank wird aktualisiert...</value>
+  </data>
+  <data name="Splash.ApplyingLanguage" xml:space="preserve">
+    <value>Sprache wird angewendet...</value>
+  </data>
+  <data name="Splash.ApplyingTheme" xml:space="preserve">
+    <value>Design wird angewendet...</value>
+  </data>
+  <data name="Splash.LoadingDashboard" xml:space="preserve">
+    <value>Dashboard wird geladen...</value>
+  </data>
+  <data name="Splash.StartingApplication" xml:space="preserve">
+    <value>BuddyToolBox wird gestartet...</value>
+  </data>
+  <data name="Features.Users.FullName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Features.Users.Gender" xml:space="preserve">
+    <value>Geschlecht</value>
+  </data>
+  <data name="Features.Users.UserName" xml:space="preserve">
+    <value>Benutzername</value>
+  </data>
+  <data name="Features.Users.Initials" xml:space="preserve">
+    <value>Initialen</value>
+  </data>
+  <data name="Features.Users.Email" xml:space="preserve">
+    <value>E-Mail</value>
+  </data>
+  <data name="Features.Users.Phone" xml:space="preserve">
+    <value>Telefon</value>
+  </data>
+  <data name="Features.Users.City" xml:space="preserve">
+    <value>Stadt</value>
+  </data>
+  <data name="Features.Users.Country" xml:space="preserve">
+    <value>Land</value>
+  </data>
+  <data name="Features.Users.FirstName" xml:space="preserve">
+    <value>Vorname</value>
+  </data>
+  <data name="Features.Users.LastName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Features.Users.Street" xml:space="preserve">
+    <value>Straße</value>
+  </data>
+  <data name="Features.Users.ZipCode" xml:space="preserve">
+    <value>Postleitzahl</value>
+  </data>
+  <data name="Features.Users.InvalidUserId" xml:space="preserve">
+    <value>Die Benutzer-ID ist ungültig.</value>
+  </data>
+  <data name="Features.Users.LoadUserFailed" xml:space="preserve">
+    <value>Der Benutzer konnte nicht geladen werden.</value>
+  </data>
+  <data name="Features.Users.SaveUserFailed" xml:space="preserve">
+    <value>Der Benutzer konnte nicht gespeichert werden.</value>
+  </data>
+  <data name="Features.Users.SaveUserSucceeded" xml:space="preserve">
+    <value>Der Benutzer wurde erfolgreich gespeichert.</value>
+  </data>
+  <data name="Features.Users.DiscardChangesTitle" xml:space="preserve">
+    <value>Änderungen verwerfen?</value>
+  </data>
+  <data name="Features.Users.DiscardChangesMessage" xml:space="preserve">
+    <value>Du hast ungespeicherte Änderungen.
+
+Möchtest du diese verwerfen?</value>
+  </data>
+  <data name="Features.Users.LoadUsersFailed" xml:space="preserve">
+    <value>Die Benutzer konnten nicht geladen werden.</value>
+  </data>
+  <data name="Features.Users.NavigationFailed" xml:space="preserve">
+    <value>Die Navigation konnte nicht ausgeführt werden.</value>
+  </data>
+  <data name="Features.Users.DeleteUsersConfirmTitle" xml:space="preserve">
+    <value>Benutzer löschen?</value>
+  </data>
+  <data name="Features.Users.DeleteUsersConfirmMessage" xml:space="preserve">
+    <value>Möchtest du die ausgewählten Benutzer wirklich löschen?</value>
+  </data>
+  <data name="Features.Users.DeleteUsersFailed" xml:space="preserve">
+    <value>Einige Benutzer konnten nicht gelöscht werden.</value>
+  </data>
+  <data name="Features.Users.DeleteUsersSucceeded" xml:space="preserve">
+    <value>Die ausgewählten Benutzer wurden erfolgreich gelöscht.</value>
+  </data>
+  <data name="Splash.LoadingUsers" xml:space="preserve">
+    <value>Benutzer werden geladen...</value>
+  </data>
+</root>

@@ -1,0 +1,27 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml">
+
+    <SolidColorBrush x:Key="Brush.Window.Background" Color="#ffffff" />
+
+    <!--  TopBar  -->
+    <SolidColorBrush x:Key="Brush.TopBar" Color="#262b3b" />
+    <SolidColorBrush x:Key="Brush.TopBar.Text" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="Brush.TopBar.Border" Color="#1e222e" />
+
+    <!--  Navigation  -->
+    <SolidColorBrush x:Key="Brush.Navigation" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="Brush.Navigation.Border" Color="#FFFFFF" />
+
+    <!--  Content  -->
+    <SolidColorBrush x:Key="Brush.Content" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="Brush.Content.Border" Color="Gray" />
+
+    <Style BasedOn="{StaticResource {x:Type ui:DataGrid}}" TargetType="{x:Type ui:DataGrid}">
+        <Setter Property="BorderBrush" Value="{DynamicResource Brush.Content.Border}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="5" />
+    </Style>
+
+</ResourceDictionary>

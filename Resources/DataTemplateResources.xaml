@@ -1,0 +1,26 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:navigation="clr-namespace:BTB.Features.Navigation"
+    xmlns:settings="clr-namespace:BTB.Features.Settings"
+    xmlns:users="clr-namespace:BTB.Features.Users">
+
+    <!--  Users Templates  -->
+    <DataTemplate DataType="{x:Type users:UsersViewModel}">
+        <users:UsersView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type users:UserEditViewModel}">
+        <users:UserEditView />
+    </DataTemplate>
+
+    <!--  Navigation Templates  -->
+    <DataTemplate DataType="{x:Type navigation:NavigationViewModel}">
+        <navigation:NavigationView />
+    </DataTemplate>
+
+    <!--  Settings Templates  -->
+    <DataTemplate DataType="{x:Type settings:SettingsViewModel}">
+        <settings:SettingsView />
+    </DataTemplate>
+
+</ResourceDictionary>

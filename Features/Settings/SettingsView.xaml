@@ -1,0 +1,258 @@
+﻿<UserControl
+    x:Class="BTB.Features.Settings.SettingsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    mc:Ignorable="d">
+
+    <Grid Background="{DynamicResource Brush.Content}" SnapsToDevicePixels="True">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!--  TopBar  -->
+        <Grid Grid.Row="0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label
+                Grid.Column="0"
+                Content="{Binding Translate[Features.Settings.ContentLabel]}"
+                Style="{StaticResource Content.Label}" />
+
+            <StackPanel
+                Grid.Column="1"
+                Margin="0,0,0,10"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal">
+                <ui:Button
+                    Command="{Binding RefreshCommand}"
+                    Icon="{ui:SymbolIcon Symbol=ArrowClockwise24}"
+                    ToolTip="{Binding Translate[Common.Reset]}" />
+            </StackPanel>
+
+            <Border
+                Grid.ColumnSpan="2"
+                BorderBrush="{DynamicResource Brush.Content.Border}"
+                BorderThickness="0,0,0,1" />
+        </Grid>
+
+        <!--  Content  -->
+        <ScrollViewer
+            Grid.Row="1"
+            Margin="0,10,0,0"
+            CanContentScroll="True"
+            HorizontalScrollBarVisibility="Disabled"
+            VerticalScrollBarVisibility="Auto">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!--  General settings  -->
+                <Grid Grid.Row="0" Margin="0,15,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Label
+                        Grid.Row="0"
+                        Content="{Binding Translate[Features.Settings.GeneralSettings]}"
+                        Style="{StaticResource Content.UnderLabel}" />
+
+                    <ui:Card Grid.Row="1">
+                        <Grid Grid.IsSharedSizeScope="True">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="Labels" />
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock
+                                Grid.Column="0"
+                                Style="{StaticResource Form.LabelStyle}"
+                                Text="{Binding Translate[Features.Settings.MaxItems]}" />
+
+                            <ui:NumberBox
+                                Grid.Column="2"
+                                Style="{StaticResource Form.NumberBoxStyle}"
+                                Value="{Binding General.Settings.MaxItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </Grid>
+                    </ui:Card>
+                </Grid>
+
+                <!--  Database settings  -->
+                <Grid Grid.Row="1" Margin="0,15,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Label
+                        Grid.Row="0"
+                        Content="{Binding Translate[Features.Settings.DatabaseSettings]}"
+                        Style="{StaticResource Content.UnderLabel}" />
+
+                    <ui:Card Grid.Row="1">
+                        <Grid Grid.IsSharedSizeScope="True">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="Labels" />
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Style="{StaticResource Form.LabelStyle}"
+                                Text="Server" />
+
+                            <ui:TextBox
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Style="{StaticResource Form.TextBoxStyle}"
+                                Text="{Binding Database.Settings.Server}" />
+
+                            <TextBlock
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Style="{StaticResource Form.LabelStyle}"
+                                Text="Database" />
+                            <ui:TextBox
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                Style="{StaticResource Form.TextBoxStyle}"
+                                Text="{Binding Database.Settings.Database}" />
+
+                            <CheckBox
+                                Grid.Row="2"
+                                Grid.Column="2"
+                                Margin="-10,0,0,10"
+                                Content="Encrypt"
+                                IsChecked="{Binding Database.Settings.Encrypt}" />
+
+                            <CheckBox
+                                Grid.Row="3"
+                                Grid.Column="2"
+                                Margin="-10,0,0,10"
+                                Content="Trust Server Certificate"
+                                IsChecked="{Binding Database.Settings.TrustServerCertificate}" />
+
+                            <CheckBox
+                                Grid.Row="4"
+                                Grid.Column="2"
+                                Margin="-10,0,0,10"
+                                Content="Integrated Security"
+                                IsChecked="{Binding Database.Settings.UseIntegratedSecurity}" />
+
+                            <TextBlock
+                                Grid.Row="5"
+                                Grid.Column="0"
+                                Style="{StaticResource Form.LabelStyle}"
+                                Text="User"
+                                Visibility="{Binding Database.Settings.UseIntegratedSecurity, Converter={StaticResource InverseBoolToVisibilityConverter}}" />
+
+                            <ui:TextBox
+                                Grid.Row="5"
+                                Grid.Column="2"
+                                Style="{StaticResource Form.TextBoxStyle}"
+                                Text="{Binding Database.Settings.User}"
+                                Visibility="{Binding Database.Settings.UseIntegratedSecurity, Converter={StaticResource InverseBoolToVisibilityConverter}}" />
+
+                            <TextBlock
+                                Grid.Row="6"
+                                Grid.Column="0"
+                                Style="{StaticResource Form.LabelStyle}"
+                                Text="Password"
+                                Visibility="{Binding Database.Settings.UseIntegratedSecurity, Converter={StaticResource InverseBoolToVisibilityConverter}}" />
+                            <ui:PasswordBox
+                                Grid.Row="6"
+                                Grid.Column="2"
+                                Password="{Binding Database.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                Style="{StaticResource Form.TextBoxStyle}"
+                                Visibility="{Binding Database.Settings.UseIntegratedSecurity, Converter={StaticResource InverseBoolToVisibilityConverter}}" />
+                        </Grid>
+                    </ui:Card>
+                </Grid>
+
+                <!--  Logging settings  -->
+                <Grid Grid.Row="2" Margin="0,15,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Label
+                        Grid.Row="0"
+                        Content="{Binding Translate[Features.Settings.LoggingSettings]}"
+                        Style="{StaticResource Content.UnderLabel}" />
+
+                    <ui:Card Grid.Row="1">
+                        <Grid Grid.IsSharedSizeScope="True">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="Labels" />
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock
+                                Grid.Column="0"
+                                Style="{StaticResource Form.LabelStyle}"
+                                Text="{Binding Translate[Features.Settings.LoggingLevel]}" />
+                            <ComboBox
+                                Grid.Column="2"
+                                ItemsSource="{Binding Logging.Levels}"
+                                SelectedItem="{Binding Logging.Settings.MinimumLevel.Default, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                Style="{StaticResource Form.ComboBoxStyle}" />
+                        </Grid>
+
+
+                    </ui:Card>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+
+        <!--  Bottom Buttons  -->
+        <StackPanel
+            Grid.Row="2"
+            Margin="0,15,0,0"
+            Orientation="Horizontal">
+
+            <ui:Button
+                Margin="0,0,10,0"
+                Command="{Binding Database.TestConnectionCommand}"
+                Content="{Binding Translate[Features.Settings.TestConnection]}" />
+
+            <ui:Button Command="{Binding SaveCommand}" Content="{Binding Translate[Common.Save]}" />
+
+        </StackPanel>
+    </Grid>
+</UserControl>

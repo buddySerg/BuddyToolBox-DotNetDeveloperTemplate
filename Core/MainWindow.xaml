@@ -1,0 +1,147 @@
+﻿<Window
+    x:Class="BTB.Core.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    Title="Buddy Toolbox"
+    Width="1440"
+    Height="900"
+    Background="{DynamicResource Brush.Window.Background}"
+    FontFamily="{DynamicResource Typography.FontFamily.Base}"
+    FontSize="{DynamicResource Typography.FontSize.Body}"
+    mc:Ignorable="d">
+
+    <Grid Background="{DynamicResource Brush.Window.Background}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{DynamicResource Layout.TopBar.Height}" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--  Top Bar  -->
+        <Border Grid.Row="0" Background="{DynamicResource Brush.TopBar}">
+
+            <Grid Background="{DynamicResource Brush.TopBar}">
+
+                <!--  Links / Mitte / Rechts  -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!--  Links: Logo + Text  -->
+                <Grid Grid.Column="0">
+                    <Image
+                        Height="50"
+                        Margin="5,5,0,0"
+                        HorizontalAlignment="Left"
+                        Source="/Resources/Images/Logo.png" />
+
+                    <TextBlock
+                        Margin="75,40,0,0"
+                        FontSize="10"
+                        Foreground="{DynamicResource Brush.TopBar.Text}"
+                        Text="{Binding Translate[App.Quote]}" />
+                    <Border
+                        Margin="245,5,0,0"
+                        Padding="2"
+                        VerticalAlignment="Top"
+                        Background="#0199ea"
+                        CornerRadius="4">
+                        <TextBlock
+                            FontSize="10"
+                            Foreground="{DynamicResource Brush.TopBar.Text}"
+                            Text="{Binding AppVersion}" />
+                    </Border>
+                </Grid>
+
+                <!--  Rechts: Infos, Auswahl & User  -->
+                <StackPanel
+                    Grid.Column="2"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+
+                    <!--  Culture Selector  -->
+                    <ComboBox
+                        Margin="10,0,0,0"
+                        ItemsSource="{Binding LocalizationViewModel.Cultures}"
+                        SelectedItem="{Binding LocalizationViewModel.SelectedCulture}">
+
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DisplayName}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                    <!--  Theme Selector  -->
+                    <ComboBox
+                        Margin="10,0,10,0"
+                        ItemsSource="{Binding ThemeViewModel.Themes}"
+                        SelectedItem="{Binding ThemeViewModel.SelectedTheme}">
+
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+
+                <!--  TopBar Separator  -->
+                <Rectangle
+                    Grid.ColumnSpan="3"
+                    Height="2"
+                    VerticalAlignment="Bottom"
+                    Fill="{DynamicResource Brush.TopBar.Border}" />
+            </Grid>
+        </Border>
+
+        <!--  Links: Navigation Rechts: Content  -->
+        <Grid
+            Grid.Row="1"
+            Margin="0"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Background="{DynamicResource Brush.Navigation}">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!--  Navigation  -->
+            <Border
+                Grid.Column="0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Background="{DynamicResource Brush.Navigation}"
+                BorderBrush="{DynamicResource Brush.Navigation.Border}"
+                BorderThickness="0,0,1,0">
+                <ContentControl Content="{Binding NavigationViewModel}" />
+            </Border>
+
+            <!--  Content  -->
+            <Border
+                Grid.Column="1"
+                Margin="0"
+                Padding="15,10,10,15"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Background="{DynamicResource Brush.Content}"
+                BorderThickness="0">
+
+                <ContentControl
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Content="{Binding NavigationViewModel.CurrentViewModel}" />
+            </Border>
+        </Grid>
+
+        <!--  WPF UI Dialog Overlay  -->
+        <ui:ContentDialogHost Grid.RowSpan="2" IsDisableSiblingsEnabled="True" />
+    </Grid>
+</Window>   

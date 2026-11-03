@@ -1,0 +1,235 @@
+﻿<UserControl
+    x:Class="BTB.Features.Users.UserEditView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    mc:Ignorable="d">
+
+    <Grid Background="{DynamicResource Brush.Content}" SnapsToDevicePixels="True">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!--  TopBar  -->
+        <Grid Grid.Row="0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label
+                Grid.Column="0"
+                Margin="0,5,0,5"
+                Content="{Binding Title}"
+                Style="{StaticResource Content.Label}" />
+
+            <Border
+                Grid.ColumnSpan="2"
+                BorderBrush="{DynamicResource Brush.Content.Border}"
+                BorderThickness="0,0,0,1" />
+
+        </Grid>
+
+        <!--  Content  -->
+        <ScrollViewer
+            Grid.Row="1"
+            Margin="0,10,0,0"
+            CanContentScroll="True"
+            HorizontalScrollBarVisibility="Disabled"
+            VerticalScrollBarVisibility="Auto">
+
+            <ui:Card
+                Margin="0"
+                VerticalAlignment="Stretch"
+                VerticalContentAlignment="Top">
+
+                <Grid Grid.IsSharedSizeScope="True">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="Labels" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Style="{StaticResource Form.LabelStyle}"
+                        Text="{Binding Translate[Features.Users.Gender]}" />
+
+                    <ui:TextBox
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Style="{StaticResource Form.TextBoxStyle}"
+                        Text="{Binding User.Gender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Style="{StaticResource Form.LabelStyle}"
+                        Text="{Binding Translate[Features.Users.FirstName]}" />
+
+                    <ui:TextBox
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Style="{StaticResource Form.TextBoxStyle}"
+                        Text="{Binding User.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBlock
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Style="{StaticResource Form.LabelStyle}"
+                        Text="{Binding Translate[Features.Users.LastName]}" />
+
+                    <ui:TextBox
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        Style="{StaticResource Form.TextBoxStyle}"
+                        Text="{Binding User.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBlock
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Style="{StaticResource Form.LabelStyle}"
+                        Text="{Binding Translate[Features.Users.Initials]}" />
+
+                    <ui:TextBox
+                        Grid.Row="3"
+                        Grid.Column="2"
+                        Style="{StaticResource Form.TextBoxStyle}"
+                        Text="{Binding User.Initials, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBlock
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        Style="{StaticResource Form.LabelStyle}"
+                        Text="{Binding Translate[Features.Users.UserName]}" />
+
+                    <ui:TextBox
+                        Grid.Row="4"
+                        Grid.Column="2"
+                        Style="{StaticResource Form.TextBoxStyle}"
+                        Text="{Binding User.UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBlock
+                        Grid.Row="5"
+                        Grid.Column="0"
+                        Style="{StaticResource Form.LabelStyle}"
+                        Text="{Binding User.Translate[Features.Users.Email]}" />
+
+                    <ui:TextBox
+                        Grid.Row="5"
+                        Grid.Column="2"
+                        Style="{StaticResource Form.TextBoxStyle}"
+                        Text="{Binding User.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBlock
+                        Grid.Row="6"
+                        Grid.Column="0"
+                        Style="{StaticResource Form.LabelStyle}"
+                        Text="{Binding Translate[Features.Users.Phone]}" />
+
+                    <ui:TextBox
+                        Grid.Row="6"
+                        Grid.Column="2"
+                        Style="{StaticResource Form.TextBoxStyle}"
+                        Text="{Binding User.Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBlock
+                        Grid.Row="8"
+                        Grid.Column="0"
+                        Style="{StaticResource Form.LabelStyle}"
+                        Text="{Binding Translate[Features.Users.Street]}" />
+
+                    <ui:TextBox
+                        Grid.Row="8"
+                        Grid.Column="2"
+                        Style="{StaticResource Form.TextBoxStyle}"
+                        Text="{Binding User.Street, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBlock
+                        Grid.Row="9"
+                        Grid.Column="0"
+                        Style="{StaticResource Form.LabelStyle}"
+                        Text="{Binding Translate[Features.Users.ZipCode]}" />
+
+                    <ui:TextBox
+                        Grid.Row="9"
+                        Grid.Column="2"
+                        Style="{StaticResource Form.TextBoxStyle}"
+                        Text="{Binding User.ZipCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBlock
+                        Grid.Row="10"
+                        Grid.Column="0"
+                        Style="{StaticResource Form.LabelStyle}"
+                        Text="{Binding Translate[Features.Users.City]}" />
+
+                    <ui:TextBox
+                        Grid.Row="10"
+                        Grid.Column="2"
+                        Style="{StaticResource Form.TextBoxStyle}"
+                        Text="{Binding User.City, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBlock
+                        Grid.Row="11"
+                        Grid.Column="0"
+                        Style="{StaticResource Form.LabelStyle}"
+                        Text="{Binding Translate[Features.Users.Country]}" />
+
+                    <ui:TextBox
+                        Grid.Row="11"
+                        Grid.Column="2"
+                        Style="{StaticResource Form.TextBoxStyle}"
+                        Text="{Binding User.Country, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                </Grid>
+
+            </ui:Card>
+
+        </ScrollViewer>
+
+        <!--  Bottom Buttons  -->
+        <StackPanel
+            Grid.Row="2"
+            Margin="0,15,0,0"
+            Orientation="Horizontal">
+
+            <ui:Button
+                Appearance="Primary"
+                Command="{Binding SaveCommand}"
+                Content="{Binding Translate[Common.Save]}"
+                Icon="{ui:SymbolIcon Symbol=Save24}" />
+
+            <ui:Button
+                Margin="10,0,0,0"
+                Command="{Binding CancelCommand}"
+                Content="{Binding Translate[Common.Cancel]}"
+                Icon="{ui:SymbolIcon Symbol=Dismiss24}" />
+
+        </StackPanel>
+
+    </Grid>
+
+</UserControl>

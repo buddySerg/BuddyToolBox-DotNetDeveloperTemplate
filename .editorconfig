@@ -1,0 +1,16 @@
+﻿[*.cs]
+
+# IDE0090: "new(...)" verwenden
+dotnet_diagnostic.IDE0090.severity = none
+
+# IDE0028: Initialisierung der Sammlung vereinfachen
+dotnet_diagnostic.IDE0028.severity = none
+
+# CA1873: Potenziell kostspielige Protokollierung vermeiden
+dotnet_diagnostic.CA1873.severity = none
+
+# IDE0290: Primären Konstruktor verwenden
+dotnet_diagnostic.IDE0290.severity = none
+
+# MVVMTK0042: Prefer using [ObservableProperty] on partial properties
+dotnet_diagnostic.MVVMTK0042.severity = none
