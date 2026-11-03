@@ -3,8 +3,8 @@ A modern .NET WPF application template built on a Feature-Based MVVM architectur
 
 ## Preview
 <p align="center">
-  <img src="docs/images/Screenshot - Settings.png" width="48%">
-  <img src="docs/images/Screenshot - Users.png" width="48%">
+  <img src="docs/Images/Screenshot - Settings.png" width="48%">
+  <img src="docs/Images/Screenshot - Users.png" width="48%">
 </p>
 
 <p align="center">
@@ -15,7 +15,7 @@ A modern .NET WPF application template built on a Feature-Based MVVM architectur
   <em>Users</em>
 </p> 
 <p align="center">
-  <img src="docs/images/Screenshot - User - ThemeLight.png" width="48%">
+  <img src="docs/Images/Screenshot - User - ThemeLight.png" width="48%">
     <br>
   <em>User (Light Theme)</em>
 </p>
