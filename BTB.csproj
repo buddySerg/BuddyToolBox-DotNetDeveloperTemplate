@@ -43,6 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="docs\Images\" />
     <Folder Include="Resources\Icons\" />
   </ItemGroup>
 
