@@ -75,7 +75,7 @@
                         Style="{StaticResource Content.UnderLabel}" />
 
                     <ui:Card Grid.Row="1">
-                        <Grid Grid.IsSharedSizeScope="True">
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="Labels" />
                                 <ColumnDefinition Width="20" />
@@ -84,11 +84,13 @@
 
                             <TextBlock
                                 Grid.Column="0"
+                                Margin="0"
                                 Style="{StaticResource Form.LabelStyle}"
                                 Text="{Binding Translate[Features.Settings.MaxItems]}" />
 
                             <ui:NumberBox
                                 Grid.Column="2"
+                                Margin="0"
                                 Style="{StaticResource Form.NumberBoxStyle}"
                                 Value="{Binding General.Settings.MaxItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </Grid>
@@ -225,10 +227,12 @@
 
                             <TextBlock
                                 Grid.Column="0"
+                                Margin="0"
                                 Style="{StaticResource Form.LabelStyle}"
                                 Text="{Binding Translate[Features.Settings.LoggingLevel]}" />
                             <ComboBox
                                 Grid.Column="2"
+                                Margin="0"
                                 ItemsSource="{Binding Logging.Levels}"
                                 SelectedItem="{Binding Logging.Settings.MinimumLevel.Default, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 Style="{StaticResource Form.ComboBoxStyle}" />
@@ -241,18 +245,13 @@
         </ScrollViewer>
 
         <!--  Bottom Buttons  -->
-        <StackPanel
-            Grid.Row="2"
-            Margin="0,15,0,0"
-            Orientation="Horizontal">
-
+        <StackPanel Grid.Row="2" Style="{StaticResource Navigation.Bottom}">
             <ui:Button
                 Margin="0,0,10,0"
                 Command="{Binding Database.TestConnectionCommand}"
                 Content="{Binding Translate[Features.Settings.TestConnection]}" />
-
             <ui:Button Command="{Binding SaveCommand}" Content="{Binding Translate[Common.Save]}" />
-
         </StackPanel>
+
     </Grid>
 </UserControl>

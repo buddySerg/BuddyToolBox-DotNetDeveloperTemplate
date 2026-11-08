@@ -23,98 +23,134 @@
     <!--  Navigation  -->
     <sys:Double x:Key="Layout.Navigation.Width">200</sys:Double>
 
-    <Style BasedOn="{StaticResource {x:Type ui:ContentDialog}}" TargetType="{x:Type ui:ContentDialog}">
-        <Setter Property="Border.CornerRadius" Value="6" />
-        <Setter Property="Padding" Value="15" />
-    </Style>
-
-    <!--  Content  -->
+    <!--  Content.Label  -->
     <Style
         x:Key="Content.Label"
         BasedOn="{StaticResource {x:Type Label}}"
         TargetType="{x:Type Label}">
+        <Setter Property="Margin" Value="0,0,0,0" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="FontSize" Value="{DynamicResource Typography.FontSize.H2}" />
         <Setter Property="FontWeight" Value="SemiBold" />
-        <Setter Property="Margin" Value="0,0,0,0" />
     </Style>
 
+    <!--  Content.UnderLabel  -->
     <Style
         x:Key="Content.UnderLabel"
         BasedOn="{StaticResource {x:Type Label}}"
         TargetType="{x:Type Label}">
+        <Setter Property="Margin" Value="0,0,0,0" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="FontSize" Value="{DynamicResource Typography.FontSize.H3}" />
         <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="Margin" Value="0,0,0,0" />
     </Style>
 
-    <!--  Form  -->
+    <!--  TextBlock  -->
     <Style
         x:Key="Form.LabelStyle"
         BasedOn="{StaticResource {x:Type TextBlock}}"
         TargetType="TextBlock">
-
+        <Setter Property="Margin" Value="0,0,0,15" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="MinWidth" Value="200" />
-        <Setter Property="Margin" Value="0,0,0,15" />
         <Setter Property="FontWeight" Value="SemiBold" />
-
     </Style>
 
-    <Style
-        x:Key="Form.TextBoxStyle"
-        BasedOn="{StaticResource {x:Type ui:TextBox}}"
-        TargetType="ui:TextBox">
-
-        <Setter Property="Width" Value="400" />
-        <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="Margin" Value="0,0,0,15" />
-
-    </Style>
-
+    <!--  ComboBox  -->
     <Style
         x:Key="Form.ComboBoxStyle"
         BasedOn="{StaticResource {x:Type ComboBox}}"
         TargetType="ComboBox">
-
+        <Setter Property="Margin" Value="0,0,0,15" />
         <Setter Property="Width" Value="400" />
         <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="Margin" Value="0,0,0,15" />
         <Setter Property="IsEditable" Value="False" />
-
     </Style>
 
+    <!--  ui:TextBox  -->
+    <Style
+        x:Key="Form.TextBoxStyle"
+        BasedOn="{StaticResource {x:Type ui:TextBox}}"
+        TargetType="ui:TextBox">
+        <Setter Property="Margin" Value="0,0,0,15" />
+        <Setter Property="Width" Value="400" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+    </Style>
+
+    <!--  ui:NumberBox  -->
     <Style
         x:Key="Form.NumberBoxStyle"
         BasedOn="{StaticResource {x:Type ui:NumberBox}}"
         TargetType="ui:NumberBox">
-
+        <Setter Property="Margin" Value="0,0,0,15" />
         <Setter Property="Width" Value="400" />
         <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="Margin" Value="0,0,0,15" />
-
     </Style>
 
-    <!--  Dialog  -->
+    <!--  ui:ContentDialog  -->
     <Style
-        x:Key="CustomContentDialogStyle"
-        BasedOn="{StaticResource {x:Type ui:ContentDialog}}"
-        TargetType="{x:Type ui:ContentDialog}" />
-
-    <Style
-        x:Key="DarkContentDialogStyle"
+        x:Key="Dialog.BaseStyle"
         BasedOn="{StaticResource {x:Type ui:ContentDialog}}"
         TargetType="{x:Type ui:ContentDialog}">
+        <Setter Property="Border.CornerRadius" Value="4" />
+        <Setter Property="Padding" Value="15" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
 
+    <Style
+        x:Key="Dialog.DarkStyle"
+        BasedOn="{StaticResource Dialog.BaseStyle}"
+        TargetType="{x:Type ui:ContentDialog}">
         <Setter Property="Foreground" Value="#FFFFFF" />
         <Setter Property="Background" Value="{DynamicResource Brush.Content}" />
         <Setter Property="Border.BorderBrush" Value="{DynamicResource Brush.Content.Border}" />
-
         <Style.Resources>
             <SolidColorBrush x:Key="ContentDialogForeground" Color="#FFFFFF" />
         </Style.Resources>
+    </Style>
 
+    <!--  ui:DataGrid  -->
+    <Style
+        x:Key="DataGrid.BaseStyle"
+        BasedOn="{StaticResource {x:Type ui:DataGrid}}"
+        TargetType="{x:Type ui:DataGrid}">
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+    </Style>
+    <Style BasedOn="{StaticResource DataGrid.BaseStyle}" TargetType="{x:Type ui:DataGrid}" />
+
+    <!--  ui:Card  -->
+    <Style
+        x:Key="Card.BaseStyle"
+        BasedOn="{StaticResource {x:Type ui:Card}}"
+        TargetType="{x:Type ui:Card}">
+        <Setter Property="Padding" Value="15" />
+        <Setter Property="Border.CornerRadius" Value="4" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+    </Style>
+
+    <!--  ui:Card / Grid  -->
+    <Style
+        x:Key="Card.GridBaseStyle"
+        BasedOn="{StaticResource {x:Type ui:Card}}"
+        TargetType="{x:Type ui:Card}">
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="Border.CornerRadius" Value="4" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+    </Style>
+
+    <!--  Navigation  -->
+    <Style x:Key="Navigation.Bottom" TargetType="{x:Type StackPanel}">
+        <Setter Property="Margin" Value="0,10,0,0" />
+        <Setter Property="Border.CornerRadius" Value="4" />
+        <Setter Property="Orientation" Value="Horizontal" />
+        <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
 
 </ResourceDictionary>

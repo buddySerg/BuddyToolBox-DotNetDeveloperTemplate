@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml">
 
+    <!--  Window  -->
     <SolidColorBrush x:Key="Brush.Window.Background" Color="#2b3142" />
 
     <!--  TopBar  -->
@@ -18,10 +19,27 @@
     <SolidColorBrush x:Key="Brush.Content" Color="#2e3547" />
     <SolidColorBrush x:Key="Brush.Content.Border" Color="#282d3d" />
 
-    <Style BasedOn="{StaticResource {x:Type ui:DataGrid}}" TargetType="{x:Type ui:DataGrid}">
-        <Setter Property="BorderBrush" Value="{DynamicResource Brush.Content.Border}" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Padding" Value="5" />
+    <!--  ui:ContentDialog  -->
+    <Style BasedOn="{StaticResource Dialog.BaseStyle}" TargetType="{x:Type ui:ContentDialog}">
+        <Setter Property="Background" Value="{DynamicResource Brush.Content}" />
+        <Setter Property="BorderBrush" Value="#2b3142" />
+        <Style.Resources>
+            <SolidColorBrush x:Key="ContentDialogForeground" Color="#ffffff" />
+        </Style.Resources>
+    </Style>
+
+    <!--  ui:Card  -->
+    <Style BasedOn="{StaticResource Card.BaseStyle}" TargetType="{x:Type ui:Card}">
+        <Setter Property="Background" Value="#32394d" />
+        <Setter Property="BorderBrush" Value="#2b3142" />
+    </Style>
+
+    <Style
+        x:Key="Card.GridStyle"
+        BasedOn="{StaticResource Card.GridBaseStyle}"
+        TargetType="{x:Type ui:Card}">
+        <Setter Property="Background" Value="#32394d" />
+        <Setter Property="BorderBrush" Value="#2b3142" />
     </Style>
 
 </ResourceDictionary>

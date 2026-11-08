@@ -20,5 +20,5 @@ public class UserSettings
     /// Gets or sets the application theme.
     /// </summary>
     [Required]
-    public AppTheme Theme { get; set; } = AppTheme.Light;
+    public AppTheme Theme { get; set; } = AppTheme.Dark;
 }

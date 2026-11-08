@@ -49,61 +49,57 @@
         </Grid>
 
         <!--  Content  -->
-        <ui:DataGrid
-            Grid.Row="1"
-            AutoGenerateColumns="False"
-            CanUserAddRows="False"
-            ItemsSource="{Binding Users}"
-            SelectionMode="Extended"
-            SelectionUnit="FullRow">
-            <ui:DataGrid.Columns>
+        <ui:Card Grid.Row="1" Style="{StaticResource Card.GridStyle}">
 
-                <DataGridTemplateColumn Width="50">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+            <ui:DataGrid
+                AutoGenerateColumns="False"
+                CanUserAddRows="False"
+                ItemsSource="{Binding Users}"
+                SelectionMode="Extended"
+                SelectionUnit="FullRow">
+                <ui:DataGrid.Columns>
 
-                <DataGridTextColumn Binding="{Binding FullName}" Header="{Binding Data.Translate[Features.Users.FullName], Source={StaticResource ViewModelProxy}}" />
-                <DataGridTextColumn Binding="{Binding Gender}" Header="{Binding Data.Translate[Features.Users.Gender], Source={StaticResource ViewModelProxy}}" />
-                <DataGridTextColumn Binding="{Binding UserName}" Header="{Binding Data.Translate[Features.Users.UserName], Source={StaticResource ViewModelProxy}}" />
-                <DataGridTextColumn Binding="{Binding Initials}" Header="{Binding Data.Translate[Features.Users.Initials], Source={StaticResource ViewModelProxy}}" />
-                <DataGridTextColumn Binding="{Binding Email}" Header="{Binding Data.Translate[Features.Users.Email], Source={StaticResource ViewModelProxy}}" />
-                <DataGridTextColumn Binding="{Binding Phone}" Header="{Binding Data.Translate[Features.Users.Phone], Source={StaticResource ViewModelProxy}}" />
-                <DataGridTextColumn Binding="{Binding City}" Header="{Binding Data.Translate[Features.Users.City], Source={StaticResource ViewModelProxy}}" />
-                <DataGridTextColumn Binding="{Binding Country}" Header="{Binding Data.Translate[Features.Users.Country], Source={StaticResource ViewModelProxy}}" />
+                    <DataGridTemplateColumn Width="50">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
 
-            </ui:DataGrid.Columns>
-        </ui:DataGrid>
+                    <DataGridTextColumn Binding="{Binding FullName}" Header="{Binding Data.Translate[Features.Users.FullName], Source={StaticResource ViewModelProxy}}" />
+                    <DataGridTextColumn Binding="{Binding Gender}" Header="{Binding Data.Translate[Features.Users.Gender], Source={StaticResource ViewModelProxy}}" />
+                    <DataGridTextColumn Binding="{Binding UserName}" Header="{Binding Data.Translate[Features.Users.UserName], Source={StaticResource ViewModelProxy}}" />
+                    <DataGridTextColumn Binding="{Binding Initials}" Header="{Binding Data.Translate[Features.Users.Initials], Source={StaticResource ViewModelProxy}}" />
+                    <DataGridTextColumn Binding="{Binding Email}" Header="{Binding Data.Translate[Features.Users.Email], Source={StaticResource ViewModelProxy}}" />
+                    <DataGridTextColumn Binding="{Binding Phone}" Header="{Binding Data.Translate[Features.Users.Phone], Source={StaticResource ViewModelProxy}}" />
+                    <DataGridTextColumn Binding="{Binding City}" Header="{Binding Data.Translate[Features.Users.City], Source={StaticResource ViewModelProxy}}" />
+                    <DataGridTextColumn Binding="{Binding Country}" Header="{Binding Data.Translate[Features.Users.Country], Source={StaticResource ViewModelProxy}}" />
+
+                </ui:DataGrid.Columns>
+            </ui:DataGrid>
+        </ui:Card>
 
         <!--  Bottom Buttons  -->
-        <StackPanel
-            Grid.Row="2"
-            Margin="0,15,0,0"
-            Orientation="Horizontal">
-
+        <StackPanel Grid.Row="2" Style="{StaticResource Navigation.Bottom}">
             <ui:Button
                 Margin="0,0,0,0"
                 Command="{Binding AddCommand}"
                 Content="{Binding Translate[Features.Users.AddUser]}"
                 Icon="{ui:SymbolIcon Symbol=PersonAdd24}" />
-
             <ui:Button
                 Margin="10,0,0,0"
                 Command="{Binding EditCommand}"
                 Content="{Binding Translate[Features.Users.EditUser]}"
                 Icon="{ui:SymbolIcon Symbol=PersonEdit24}" />
-
             <ui:Button
                 Margin="10,0,0,0"
                 Appearance="Danger"
                 Command="{Binding DeleteCommand}"
                 Content="{Binding Translate[Features.Users.DeleteUser]}"
                 Icon="{ui:SymbolIcon Symbol=PersonDelete24}" />
-
         </StackPanel>
+
     </Grid>
 
 </UserControl>

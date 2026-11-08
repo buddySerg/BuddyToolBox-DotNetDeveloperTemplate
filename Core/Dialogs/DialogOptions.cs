@@ -33,5 +33,5 @@ public sealed class DialogOptions
     /// <summary>
     /// Gets or sets the resource key of the style applied to the dialog.
     /// </summary>
-    public string StyleKey { get; set; } = "CustomContentDialogStyle";
+    public string? StyleKey { get; set; }
 }

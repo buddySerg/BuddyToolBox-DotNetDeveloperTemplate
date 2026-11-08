@@ -97,9 +97,13 @@ public sealed class DialogService : IDialogService
                 Content = dialogContent,
                 Width = options.Width,
                 Height = options.Height
-            },
-            Style = Application.Current.TryFindResource(options.StyleKey) as Style
+            }
         };
+
+        if (options.StyleKey != null)
+        {
+            dialog.Style = Application.Current.TryFindResource(options.StyleKey) as Style;
+        }
 
         if (!string.IsNullOrWhiteSpace(options.PrimaryButtonText))
         {
@@ -122,7 +126,7 @@ public sealed class DialogService : IDialogService
     /// <summary>
     /// Creates dialog options by applying the specified dimensions and button texts.
     /// </summary>
-    private DialogOptions CreateOptions(DialogOptions? source, string? primaryButtonText = null, string? closeButtonText = null)
+    private static DialogOptions CreateOptions(DialogOptions? source, string? primaryButtonText = null, string? closeButtonText = null)
     {
         DialogOptions dialogOptions = new DialogOptions
         {
