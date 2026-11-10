@@ -20,7 +20,7 @@ public sealed class ThemeService : IThemeService
     /// <summary>
     /// Gets the theme currently applied to the application.
     /// </summary>
-    public AppTheme CurrentTheme { get; private set; } = AppTheme.Light;
+    public AppTheme CurrentTheme { get; private set; } = AppTheme.Dark;
     #endregion
 
     /// <summary>
@@ -34,7 +34,7 @@ public sealed class ThemeService : IThemeService
         {
             AppTheme.Dark => ApplicationTheme.Dark,
             AppTheme.Light => ApplicationTheme.Light,
-            _ => ApplicationTheme.Light
+            _ => ApplicationTheme.Dark
         };
 
         // Theme for WPF UI Controls

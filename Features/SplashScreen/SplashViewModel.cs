@@ -44,7 +44,7 @@ public sealed partial class SplashViewModel : LocalizedViewModelBase
     public async Task UpdateStatusAsync(StartupStep step, double progress)
     {
         Status = new SplashStatus(step, progress);
-        await Task.Delay(300);
+        await Task.Delay(100);
     }
     #endregion
 

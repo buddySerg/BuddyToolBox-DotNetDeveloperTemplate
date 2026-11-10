@@ -29,17 +29,11 @@
     </Style>
 
     <!--  ui:Card  -->
-    <Style BasedOn="{StaticResource Card.BaseStyle}" TargetType="{x:Type ui:Card}">
-        <Setter Property="Background" Value="#32394d" />
-        <Setter Property="BorderBrush" Value="#2b3142" />
-    </Style>
+    <Style BasedOn="{StaticResource Card.BaseStyle}" TargetType="{x:Type ui:Card}" />
 
     <Style
         x:Key="Card.GridStyle"
         BasedOn="{StaticResource Card.GridBaseStyle}"
-        TargetType="{x:Type ui:Card}">
-        <Setter Property="Background" Value="#32394d" />
-        <Setter Property="BorderBrush" Value="#2b3142" />
-    </Style>
+        TargetType="{x:Type ui:Card}" />
 
 </ResourceDictionary>

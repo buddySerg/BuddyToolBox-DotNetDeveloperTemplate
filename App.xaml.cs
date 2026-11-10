@@ -31,7 +31,7 @@ public partial class App : Application
 {
     // private Properties
     private IHost? _host;
-    private const int SplashScreenDelay = 3000; // Minimum time to show the splash screen in milliseconds
+    private const int SplashScreenDelay = 300; // Minimum time to show the splash screen in milliseconds
 
     private static IHost CreateHost()
     {

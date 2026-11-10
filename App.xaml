@@ -19,9 +19,9 @@
                     2. Dark theme
                     3. Shared application overrides
                 -->
-                <ui:ThemesDictionary Theme="Light" />
+                <ui:ThemesDictionary Theme="Dark" />
                 <ui:ControlsDictionary />
-                <ResourceDictionary Source="/Resources/Themes/Theme.Light.xaml" />
+                <ResourceDictionary Source="/Resources/Themes/Theme.Dark.xaml" />
                 <ResourceDictionary Source="/Resources/Themes/Theme.Shared.xaml" />
 
                 <!--  Icons and Images  -->
