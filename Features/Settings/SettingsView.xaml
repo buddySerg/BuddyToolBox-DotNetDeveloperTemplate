@@ -54,7 +54,7 @@
             HorizontalScrollBarVisibility="Disabled"
             VerticalScrollBarVisibility="Auto">
 
-            <Grid>
+            <Grid Grid.IsSharedSizeScope="True">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -110,7 +110,7 @@
                         Style="{StaticResource Content.UnderLabel}" />
 
                     <ui:Card Grid.Row="1">
-                        <Grid Grid.IsSharedSizeScope="True">
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="Labels" />
                                 <ColumnDefinition Width="20" />
@@ -218,7 +218,7 @@
                         Style="{StaticResource Content.UnderLabel}" />
 
                     <ui:Card Grid.Row="1">
-                        <Grid Grid.IsSharedSizeScope="True">
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="Labels" />
                                 <ColumnDefinition Width="20" />

@@ -1,4 +1,5 @@
-﻿using BTB.Data.Entities;
+﻿using BTB.Core.Security;
+using BTB.Data.Entities;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -6,44 +7,18 @@ using Microsoft.Extensions.Logging;
 namespace BTB.Data.Repositories;
 
 /// <summary>
-/// Provides persistence operations for <see cref="User"/> entities.
-/// </summary>
-public interface IUserRepository
-{
-    /// <summary>
-    /// Retrieves all users ordered by last name and first name.
-    /// </summary>
-    Task<Result<List<User>>> GetAllAsync(CancellationToken cancellationToken = default);
-
-    /// <summary>
-    /// Retrieves a user by its identifier.
-    /// </summary>
-    Task<Result<User>> GetByIdAsync(Guid userId, CancellationToken cancellationToken = default);
-
-    /// <summary>
-    /// Creates a new user in the data store.
-    /// </summary>
-    Task<Result<User>> AddAsync(User user, CancellationToken cancellationToken = default);
-
-    /// <summary>
-    /// Updates an existing user in the data store.
-    /// </summary>
-    Task<Result<User>> UpdateAsync(User user, CancellationToken cancellationToken = default);
-
-    /// <summary>
-    /// Deletes a user by its identifier.
-    /// </summary>
-    Task<Result> DeleteAsync(Guid userId, CancellationToken cancellationToken = default);
-}
-
-/// <summary>
 /// Repository implementation for <see cref="User"/> entities.
 /// </summary>
 public class UserRepository : RepositoryBase<UserRepository>, IUserRepository
 {
+    #region Private Fields
+    private readonly IEncryptionService _encryptionService;
+    #endregion
+
     // Constructor
-    public UserRepository(IDbContextFactory<AppDbContext> dbContextFactory, ILogger<UserRepository> logger) : base(dbContextFactory, logger)
+    public UserRepository(IEncryptionService encryptionService, IDbContextFactory<AppDbContext> dbContextFactory, ILogger<UserRepository> logger) : base(dbContextFactory, logger)
     {
+        _encryptionService = encryptionService;
     }
 
     #region Public Methods
@@ -166,6 +141,59 @@ public class UserRepository : RepositoryBase<UserRepository>, IUserRepository
             },
             $"Deleting user {userId}.",
             $"The user {userId} could not be deleted.",
+            cancellationToken);
+    }
+
+    /// <summary>
+    /// Authenticates a username and password.
+    /// </summary>
+    public Task<Result<User>> LoginAsync(string userName, string password, CancellationToken cancellationToken = default)
+    {
+        return ExecuteAsync(
+            async (db, ct) =>
+            {
+                if (String.IsNullOrWhiteSpace(password) || String.IsNullOrWhiteSpace(userName))
+                {
+                    return Result<User>.Unauthorized("Invalid username or password.");
+                }
+
+                User? user = await db.Users
+                    .AsNoTracking()
+                    .SingleOrDefaultAsync(x => x.UserName == userName && x.IsActive, ct);
+
+                if (user is null)
+                {
+                    return Result<User>.Unauthorized("Invalid username or password.");
+                }
+
+                string userPassword = _encryptionService.Decrypt(user.UserPassword);
+
+                if (password != userPassword)
+                {
+                    return Result<User>.Unauthorized("Invalid username or password.");
+                }
+
+                return Result<User>.Success(user);
+            },
+            $"Login attempt for {userName}.",
+            $"An error occurred during login for {userName}.",
+            cancellationToken);
+    }
+    public Task<Result<bool>> IsAuthenticationRequiredAsync(CancellationToken cancellationToken = default)
+    {
+        return ExecuteAsync(
+            async (db, ct) =>
+            {
+                bool required = await db.Users
+                    .AsNoTracking()
+                    .AnyAsync(
+                        user => user.IsActive && !string.IsNullOrWhiteSpace(user.UserPassword),
+                        ct);
+
+                return Result<bool>.Success(required);
+            },
+            "Checking if authentication is required.",
+            "Failed to determine whether authentication is required.",
             cancellationToken);
     }
     #endregion

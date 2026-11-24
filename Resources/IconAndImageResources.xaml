@@ -8,7 +8,7 @@
 
     <ui:SymbolIconSource x:Key="UsersIcon" Symbol="People24" />
 
-    <ui:SymbolIconSource x:Key="SettingsIcon" Symbol="Settings48" />
+    <ui:SymbolIconSource x:Key="SettingsIcon" Symbol="Settings24" />
 
     <!--  Images  -->
     <BitmapImage x:Key="LogoIcon" UriSource="/Resources/Images/Logo.png" />

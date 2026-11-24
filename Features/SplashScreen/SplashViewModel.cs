@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 
 using BTB.Core.Base;
+using BTB.Core.Enums;
 using BTB.Core.Localization;
 
 using CommunityToolkit.Mvvm.ComponentModel;

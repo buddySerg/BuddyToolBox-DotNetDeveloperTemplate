@@ -83,7 +83,7 @@
                     Text="{Binding Translate[App.Description]}"
                     TextWrapping="Wrap" />
 
-                <TextBlock Margin="0,10,0,0" Text="{Binding Copyright}" />
+                <!--<TextBlock Margin="0,10,0,0" Text="{Binding Copyright}" />-->
 
             </StackPanel>
 

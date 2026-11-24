@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using BTB.Core.Enums;
+
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace BTB.Core.Navigation;
 
@@ -28,7 +30,8 @@ public sealed class NavigationRegistry
         string? iconResourceKey = null,
         int order = 0,
         bool isMenuItem = true,
-        bool isFooterItem = false)
+        bool isFooterItem = false,
+        List<UserRole>? roles = null)
         where TViewModel : ObservableObject
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(route);
@@ -46,7 +49,8 @@ public sealed class NavigationRegistry
             IconResourceKey = iconResourceKey,
             Order = order,
             IsMenuItem = isMenuItem,
-            IsFooterItem = isFooterItem
+            IsFooterItem = isFooterItem,
+            Roles = roles ?? new List<UserRole>()
         });
     }
 

@@ -50,21 +50,9 @@
         x:Key="Form.LabelStyle"
         BasedOn="{StaticResource {x:Type TextBlock}}"
         TargetType="TextBlock">
-        <Setter Property="Margin" Value="0,0,0,15" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="MinWidth" Value="200" />
         <Setter Property="FontWeight" Value="SemiBold" />
-    </Style>
-
-    <!--  ComboBox  -->
-    <Style
-        x:Key="Form.ComboBoxStyle"
-        BasedOn="{StaticResource {x:Type ComboBox}}"
-        TargetType="ComboBox">
+        <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Margin" Value="0,0,0,15" />
-        <Setter Property="Width" Value="400" />
-        <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="IsEditable" Value="False" />
     </Style>
 
     <!--  ui:TextBox  -->
@@ -72,9 +60,22 @@
         x:Key="Form.TextBoxStyle"
         BasedOn="{StaticResource {x:Type ui:TextBox}}"
         TargetType="ui:TextBox">
-        <Setter Property="Margin" Value="0,0,0,15" />
-        <Setter Property="Width" Value="400" />
+        <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Width" Value="400" />
+        <Setter Property="Margin" Value="0,0,0,15" />
+    </Style>
+
+    <!--  ComboBox  -->
+    <Style
+        x:Key="Form.ComboBoxStyle"
+        BasedOn="{StaticResource {x:Type ComboBox}}"
+        TargetType="ComboBox">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Width" Value="400" />
+        <Setter Property="Margin" Value="0,0,0,15" />
+        <Setter Property="IsEditable" Value="False" />
     </Style>
 
     <!--  ui:NumberBox  -->
@@ -82,9 +83,10 @@
         x:Key="Form.NumberBoxStyle"
         BasedOn="{StaticResource {x:Type ui:NumberBox}}"
         TargetType="ui:NumberBox">
-        <Setter Property="Margin" Value="0,0,0,15" />
-        <Setter Property="Width" Value="400" />
+        <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Width" Value="400" />
+        <Setter Property="Margin" Value="0,0,0,15" />
     </Style>
 
     <!--  ui:ContentDialog  -->

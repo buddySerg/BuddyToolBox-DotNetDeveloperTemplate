@@ -1,5 +1,6 @@
 ﻿using System.IO;
 
+using BTB.Core.Enums;
 using BTB.Core.Navigation;
 using BTB.Core.Repositories;
 using BTB.Core.Settings;
@@ -42,7 +43,8 @@ public static class SettingsFeatureExtensions
             iconResourceKey: "SettingsIcon",
             order: 0,
             isMenuItem: false,
-            isFooterItem: true);
+            isFooterItem: true,
+            roles: new List<UserRole> { UserRole.Admin });
 
         return services;
     }

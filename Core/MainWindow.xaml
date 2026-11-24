@@ -89,6 +89,55 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
+
+                    <!--  User, if user logged in  -->
+                    <Border
+                        Margin="0,0,10,0"
+                        VerticalAlignment="Center"
+                        Visibility="{Binding ShowUserName, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <TextBlock
+                            FontWeight="SemiBold"
+                            Foreground="{DynamicResource Brush.TopBar.Text}"
+                            Text="{Binding UserNameDisplay}" />
+                    </Border>
+
+                    <!--  Login Button, if user not logged in  -->
+                    <Button
+                        Margin="0,0,10,0"
+                        Padding="10"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding LoginCommand}"
+                        Cursor="Hand"
+                        ToolTip="{Binding Translate[Features.Users.Login]}"
+                        Visibility="{Binding ShowLoginButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                        <ui:SymbolIcon
+                            Filled="True"
+                            FontSize="20"
+                            Foreground="{DynamicResource Brush.TopBar.Text}"
+                            Symbol="Person24" />
+
+                    </Button>
+
+                    <Button
+                        Margin="0,0,10,0"
+                        Padding="10"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding LogoutCommand}"
+                        Cursor="Hand"
+                        ToolTip="{Binding Translate[Features.Users.Logout]}"
+                        Visibility="{Binding ShowLoginButton, Converter={StaticResource InverseBoolToVisibilityConverter}}">
+
+                        <ui:SymbolIcon
+                            Filled="True"
+                            FontSize="20"
+                            Foreground="{DynamicResource Brush.TopBar.Text}"
+                            Symbol="SignOut20" />
+
+                    </Button>
+
                 </StackPanel>
 
                 <!--  TopBar Separator  -->

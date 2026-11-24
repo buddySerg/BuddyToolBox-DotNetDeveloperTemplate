@@ -67,9 +67,10 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
+                    <DataGridTextColumn Binding="{Binding GenderDisplay}" Header="{Binding Data.Translate[Features.Users.Gender], Source={StaticResource ViewModelProxy}}" />
                     <DataGridTextColumn Binding="{Binding FullName}" Header="{Binding Data.Translate[Features.Users.FullName], Source={StaticResource ViewModelProxy}}" />
-                    <DataGridTextColumn Binding="{Binding Gender}" Header="{Binding Data.Translate[Features.Users.Gender], Source={StaticResource ViewModelProxy}}" />
                     <DataGridTextColumn Binding="{Binding UserName}" Header="{Binding Data.Translate[Features.Users.UserName], Source={StaticResource ViewModelProxy}}" />
+                    <DataGridTextColumn Binding="{Binding RoleDisplay}" Header="{Binding Data.Translate[Features.Users.Role], Source={StaticResource ViewModelProxy}}" />
                     <DataGridTextColumn Binding="{Binding Initials}" Header="{Binding Data.Translate[Features.Users.Initials], Source={StaticResource ViewModelProxy}}" />
                     <DataGridTextColumn Binding="{Binding Email}" Header="{Binding Data.Translate[Features.Users.Email], Source={StaticResource ViewModelProxy}}" />
                     <DataGridTextColumn Binding="{Binding Phone}" Header="{Binding Data.Translate[Features.Users.Phone], Source={StaticResource ViewModelProxy}}" />

@@ -31,7 +31,7 @@ public sealed class DialogService : IDialogService
     /// </summary>
     public Task ShowInfo(object content, string? title = null, DialogOptions? options = null)
     {
-        options ??= CreateOptions(options, null, "Common.Ok");
+        options ??= CreateOptions(null, _localization["Common.Ok"]);
         return Show(content, title ?? _localization["Dialog.Info"], options);
     }
 
@@ -40,7 +40,7 @@ public sealed class DialogService : IDialogService
     /// </summary>
     public Task ShowError(object content, string? title = null, DialogOptions? options = null)
     {
-        options ??= CreateOptions(options, null, "Common.Ok");
+        options ??= CreateOptions(null, _localization["Common.Ok"]);
         return Show(content, title ?? _localization["Dialog.Error"], options);
     }
 
@@ -49,7 +49,7 @@ public sealed class DialogService : IDialogService
     /// </summary>
     public async Task<bool> Confirm(object content, string? title = null, DialogOptions? options = null)
     {
-        options ??= CreateOptions(options, "Common.Yes", "Common.No");
+        options ??= CreateOptions(_localization["Common.Yes"], _localization["Common.No"]);
         ContentDialogResult result = await Show(content, title ?? _localization["Dialog.Confirmation"], options);
         return result == ContentDialogResult.Primary;
     }
@@ -59,7 +59,7 @@ public sealed class DialogService : IDialogService
     /// </summary>
     public async Task<ContentDialogResult> Show(object content, string? title = null, DialogOptions? options = null)
     {
-        options ??= CreateOptions(options, "Common.Apply", "Common.Close");
+        options ??= CreateOptions(_localization["Common.Apply"], _localization["Common.Close"]);
 
         ContentDialog dialog = CreateDialog(content, title, options);
 
@@ -102,22 +102,57 @@ public sealed class DialogService : IDialogService
 
         if (options.StyleKey != null)
         {
-            dialog.Style = Application.Current.TryFindResource(options.StyleKey) as Style;
+            if (Application.Current.TryFindResource(options.StyleKey) is Style style)
+            {
+                dialog.Style = style;
+            }
+            else
+            {
+                throw new InvalidOperationException($"Dialog style '{options.StyleKey}' not found.");
+            }
         }
 
         if (!string.IsNullOrWhiteSpace(options.PrimaryButtonText))
         {
-            dialog.PrimaryButtonText = _localization[options.PrimaryButtonText];
+            dialog.PrimaryButtonText = options.PrimaryButtonText;
         }
 
         if (!string.IsNullOrWhiteSpace(options.SecondaryButtonText))
         {
-            dialog.SecondaryButtonText = _localization[options.SecondaryButtonText];
+            dialog.SecondaryButtonText = options.SecondaryButtonText;
         }
 
         if (!string.IsNullOrWhiteSpace(options.CloseButtonText))
         {
-            dialog.CloseButtonText = _localization[options.CloseButtonText];
+            dialog.CloseButtonText = options.CloseButtonText;
+        }
+
+        if (options.PrimaryButtonValidation != null)
+        {
+            bool allowClose = false;
+
+            dialog.ButtonClicked += async (sender, args) =>
+            {
+                if (args.Button != ContentDialogButton.Primary)
+                {
+                    return;
+                }
+
+                allowClose = await options.PrimaryButtonValidation();
+
+                if (allowClose)
+                {
+                    dialog.Hide();
+                }
+            };
+
+            dialog.Closing += (sender, args) =>
+            {
+                if (args.Result == ContentDialogResult.Primary && !allowClose)
+                {
+                    args.Cancel = true;
+                }
+            };
         }
 
         return dialog;
@@ -126,13 +161,11 @@ public sealed class DialogService : IDialogService
     /// <summary>
     /// Creates dialog options by applying the specified dimensions and button texts.
     /// </summary>
-    private static DialogOptions CreateOptions(DialogOptions? source, string? primaryButtonText = null, string? closeButtonText = null)
+    private DialogOptions CreateOptions(string? primaryButtonText = null, string? closeButtonText = null)
     {
         DialogOptions dialogOptions = new DialogOptions
         {
-            Width = source?.Width ?? 400,
-            Height = source?.Height ?? 250,
-            CloseButtonText = "Common.Ok"
+            CloseButtonText = _localization["Common.Ok"]
         };
 
         if (!string.IsNullOrWhiteSpace(primaryButtonText))

@@ -1,21 +1,40 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
+using BTB.Core.Enums;
+
 namespace BTB.Data.Entities;
 
 public class User
 {
     public Guid UserId { get; set; } = Guid.NewGuid();
-    public string Gender { get; set; } = string.Empty;
+
+    public Gender? Gender { get; set; }
+
     public string FirstName { get; set; } = string.Empty;
+
     public string LastName { get; set; } = string.Empty;
+
     public string? Initials { get; set; }
+
     public string? Street { get; set; }
+
     public string? ZipCode { get; set; }
+
     public string? City { get; set; }
+
     public string? Country { get; set; }
+
     public string Email { get; set; } = string.Empty;
+
     public string? Phone { get; set; }
+
     public string? UserName { get; set; }
+
+    public string? UserPassword { get; set; }
+
+    public UserRole Role { get; set; }
+
+    public bool IsActive { get; set; } = true;
 
     [NotMapped]
     public string FullName => $"{FirstName} {LastName}".Trim();

@@ -1,12 +1,15 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:converter="clr-namespace:BTB.Core.Converters">
+    xmlns:converters="clr-namespace:BTB.Core.Converters">
 
     <!--  Converts true to false and false to true.  -->
-    <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
+    <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
 
     <!--  Converts true to Collapsed and false to Visible.  -->
-    <converter:InverseBoolToVisibilityConverter x:Key="InverseBoolToVisibilityConverter" />
+    <converters:InverseBoolToVisibilityConverter x:Key="InverseBoolToVisibilityConverter" />
+
+    <!--  Converts enum values to localized strings.  -->
+    <converters:LocalizedEnumConverter x:Key="LocalizedEnumConverter" />
 
 </ResourceDictionary>

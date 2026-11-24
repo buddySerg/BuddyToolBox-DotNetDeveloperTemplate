@@ -1,4 +1,5 @@
-﻿using BTB.Core.Navigation;
+﻿using BTB.Core.Enums;
+using BTB.Core.Navigation;
 using BTB.Data.Repositories;
 
 using Microsoft.Extensions.DependencyInjection;
@@ -41,6 +42,10 @@ public static class UsersFeatureExtensions
         services.AddTransient<UserEditViewModel>();
         services.AddTransient<UserEditView>();
 
+        // Login View & ViewModel
+        services.AddTransient<UserLoginViewModel>();
+        services.AddTransient<UserLoginView>();
+
         #region Navigation Registration
         navigation.Register<UsersViewModel>(
             title: "Features.Users.MenuLabel",
@@ -48,7 +53,8 @@ public static class UsersFeatureExtensions
             iconResourceKey: "UsersIcon",
             order: 10,
             isMenuItem: true,
-            isFooterItem: false);
+            isFooterItem: false,
+            roles: new List<UserRole> { UserRole.Admin });
 
         navigation.Register<UserEditViewModel>(
             title: "Features.Users.AddUser",
@@ -56,7 +62,8 @@ public static class UsersFeatureExtensions
             iconResourceKey: "UsersIcon",
             order: 0,
             isMenuItem: false,
-            isFooterItem: false);
+            isFooterItem: false,
+            roles: new List<UserRole> { UserRole.Admin });
 
         navigation.Register<UserEditViewModel>(
             title: "Features.Users.EditUser",
@@ -64,7 +71,8 @@ public static class UsersFeatureExtensions
             iconResourceKey: "UsersIcon",
             order: 0,
             isMenuItem: false,
-            isFooterItem: false);
+            isFooterItem: false,
+            roles: new List<UserRole> { UserRole.Admin });
         #endregion
 
         return services;

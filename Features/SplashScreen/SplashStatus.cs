@@ -1,14 +1,5 @@
-﻿namespace BTB.Features.SplashScreen;
+﻿using BTB.Core.Enums;
 
-public enum StartupStep
-{
-    StartingServices,
-    LoadingSettings,
-    UpdatingDatabase,
-    ApplyingLanguage,
-    ApplyingTheme,
-    LoadingUsers,
-    StartingApplication
-}
+namespace BTB.Features.SplashScreen;
 
 public sealed record SplashStatus(StartupStep Step, double Progress);

@@ -7,10 +7,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
 	<Company>BuddyToolBox</Company>	
-	<Name>BuddyToolBox - Developer Template</Name>	
-	<Product>BuddyToolBox - Developer Template</Product>
+	<Name>.NET Developer Template</Name>	
+	<Product>.NET Developer Template</Product>
 	<Description>Modern feature-based MVVM application template with navigation, localization, dependency injection, and configuration management.</Description>
 	<Copyright>© 2026 BuddyToolBox. All rights reserved.</Copyright>
+    <AssemblyVersion>1.0.1</AssemblyVersion>
+    <FileVersion>1.0.1</FileVersion>
+    <Version>1.0.1</Version>	
   </PropertyGroup>
   
   <ItemGroup>

@@ -13,8 +13,14 @@ namespace BTB.Features.Navigation;
 
 public partial class NavigationViewModel : LocalizedViewModelBase
 {
+    #region private Fields
     private readonly NavigationState _navigationState;
+    private readonly ApplicationState _applicationState;
+    private readonly NavigationRegistry _navigationRegistry;
+    public readonly INavigationService NavigationService;
     private readonly Dictionary<NavigationViewItem, NavigationRegistration> _items = new();
+    #endregion
+
     #region Public properties
     public object? CurrentViewModel => _navigationState.CurrentViewModel;
     public string? CurrentRoute => _navigationState.CurrentRoute;
@@ -22,40 +28,30 @@ public partial class NavigationViewModel : LocalizedViewModelBase
     #endregion
 
     #region Observable collections
-    public ObservableCollection<NavigationViewItem> NavigationMenuItems { get; }
-    public ObservableCollection<NavigationViewItem> NavigationFooterItems { get; }
+    public ObservableCollection<NavigationViewItem> NavigationMenuItems { get; } = new ObservableCollection<NavigationViewItem>();
+    public ObservableCollection<NavigationViewItem> NavigationFooterItems { get; } = new ObservableCollection<NavigationViewItem>();
     #endregion
 
-    /// <summary>
-    /// Constructor for the NavigationViewModel class.
-    /// </summary>
+    /// Constructor
     public NavigationViewModel(
         ILocalizationService localizationService,
         NavigationState navigationState,
         NavigationRegistry registry,
-        INavigationService navigationService) : base(localizationService)
+        INavigationService navigationService,
+        ApplicationState applicationState) : base(localizationService)
     {
-        this._navigationState = navigationState;
+        _navigationState = navigationState;
+        _applicationState = applicationState;
+        _navigationRegistry = registry;
+        NavigationService = navigationService;
 
-        NavigationMenuItems = new ObservableCollection<NavigationViewItem>(
-            registry.GetMenuItems().Select(item => CreateNavigationItem(item, navigationService)));
+        LoadNavigationItems();
 
-        NavigationFooterItems = new ObservableCollection<NavigationViewItem>(
-            registry.GetFooterItems().Select(item => CreateNavigationItem(item, navigationService)));
-
-        navigationState.CurrentChanged += OnCurrentChanged;
+        _navigationState.CurrentChanged += OnCurrentChanged;
+        _applicationState.CurrentUserChanged += OnCurrentUserChanged;
     }
 
-    protected override void OnCultureChanged()
-    {
-        base.OnCultureChanged();
-
-        foreach (var pair in _items)
-        {
-            pair.Key.Content = Translate[pair.Value.Title];
-        }
-    }
-
+    #region Events
     private void OnCurrentChanged(object? sender, NavigationEntry? e)
     {
         // Update active menu item
@@ -75,13 +71,55 @@ public partial class NavigationViewModel : LocalizedViewModelBase
         OnPropertyChanged(nameof(CanGoBack));
     }
 
-    private NavigationViewItem CreateNavigationItem(NavigationRegistration item, INavigationService navigationService)
+    protected override void OnCultureChanged()
+    {
+        base.OnCultureChanged();
+
+        foreach (KeyValuePair<NavigationViewItem, NavigationRegistration> pair in _items)
+        {
+            pair.Key.Content = Translate[pair.Value.Title];
+        }
+    }
+
+    private void OnCurrentUserChanged(object? sender, EventArgs e)
+    {
+        LoadNavigationItems();
+        OnCurrentChanged(this, null);
+    }
+    #endregion
+
+    #region Private Methods
+    private void LoadNavigationItems()
+    {
+        NavigationMenuItems.Clear();
+        NavigationFooterItems.Clear();
+        _items.Clear();
+
+        foreach (NavigationRegistration item in _navigationRegistry.GetMenuItems())
+        {
+            if (_applicationState.IsAuthenticationRequired && !item.IsVisible(_applicationState.CurrentUser))
+            {
+                continue;
+            }
+            NavigationMenuItems.Add(CreateNavigationItem(item));
+        }
+
+        foreach (NavigationRegistration item in _navigationRegistry.GetFooterItems())
+        {
+            if (_applicationState.IsAuthenticationRequired && !item.IsVisible(_applicationState.CurrentUser))
+            {
+                continue;
+            }
+            NavigationFooterItems.Add(CreateNavigationItem(item));
+        }
+    }
+    private NavigationViewItem CreateNavigationItem(NavigationRegistration item)
     {
         NavigationViewItem navigationItem = new NavigationViewItem
         {
             Content = Translate[item.Title],
             Tag = item.Route,
-            Command = new AsyncRelayCommand(() => navigationService.NavigateAsync(item.Route)),
+            Command = new AsyncRelayCommand(() => NavigationService.NavigateAsync(item.Route)),
         };
 
         // Create IconControl
@@ -90,7 +128,7 @@ public partial class NavigationViewModel : LocalizedViewModelBase
             navigationItem.Icon = new IconControl
             {
                 IconResourceKey = item.IconResourceKey,
-                IconSize = 24
+                IconSize = 20
             };
         }
 
@@ -98,12 +136,14 @@ public partial class NavigationViewModel : LocalizedViewModelBase
 
         return navigationItem;
     }
+    #endregion
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
             _navigationState.CurrentChanged -= OnCurrentChanged;
+            _applicationState.CurrentUserChanged -= OnCurrentUserChanged;
         }
 
         base.Dispose(disposing);

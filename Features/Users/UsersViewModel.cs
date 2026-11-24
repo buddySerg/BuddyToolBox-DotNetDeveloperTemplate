@@ -137,13 +137,13 @@ namespace BTB.Features.Users
 
                 UnsubscribeUsers();
 
-                List<UserViewModel> users = [.. loadedUsers
+                List<UserViewModel> users = loadedUsers
                         .Select(user =>
                         {
-                            UserViewModel vm = UserViewModel.FromEntity(user);
+                            UserViewModel vm = new UserViewModel(user, Translate);
                             vm.PropertyChanged += User_PropertyChanged;
                             return vm;
-                        })];
+                        }).ToList();
 
                 Users.ClearAndAddRange(users);
 

@@ -163,7 +163,7 @@
     <value>Good software starts with a solid foundation.</value>
   </data>
   <data name="App.Name" xml:space="preserve">
-    <value>BuddyToolbox - Developer Template</value>
+    <value>.NET Developer Template</value>
   </data>
   <data name="Features.Settings.ContentLabel" xml:space="preserve">
     <value>Settings (global)</value>
@@ -240,7 +240,7 @@ Do you want to discard them and reload the settings?</value>
     <value>Failed to refresh application settings.</value>
   </data>
   <data name="App.Description" xml:space="preserve">
-    <value>Modern feature-based MVVM application template with navigation, localization, dependency injection, and configuration management.</value>
+    <value>Modern feature-based MVVM application template with navigation, localization, user management, and configuration management.</value>
   </data>
   <data name="Splash.StartingServices" xml:space="preserve">
     <value>Starting services...</value>
@@ -291,7 +291,7 @@ Do you want to discard them and reload the settings?</value>
     <value>First name</value>
   </data>
   <data name="Features.Users.LastName" xml:space="preserve">
-    <value>Name</value>
+    <value>Lastname</value>
   </data>
   <data name="Features.Users.Street" xml:space="preserve">
     <value>Street</value>
@@ -339,5 +339,38 @@ Do you want to discard them?</value>
   </data>
   <data name="Splash.LoadingUsers" xml:space="preserve">
     <value>Loading users...</value>
+  </data>
+  <data name="Features.Users.Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Common.Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Features.Users.Role" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="Features.Users.Role.Admin" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="Features.Users.Role.Guest" xml:space="preserve">
+    <value>Guest</value>
+  </data>
+  <data name="Features.Users.Role.User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Common.Gender.Unknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="Common.Gender.Male" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="Common.Gender.Female" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="Common.Gender.Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Features.Users.Active" xml:space="preserve">
+    <value>Active</value>
   </data>
 </root>

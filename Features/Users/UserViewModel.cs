@@ -1,4 +1,7 @@
-﻿using BTB.Data.Entities;
+﻿using BTB.Core.Base;
+using BTB.Core.Enums;
+using BTB.Core.Localization;
+using BTB.Data.Entities;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 
@@ -7,8 +10,13 @@ namespace BTB.Features.Users;
 /// <summary>
 /// Represents a user-facing view model for displaying and editing user data in the UI.
 /// </summary>
-public partial class UserViewModel : ObservableObject
+public partial class UserViewModel : LocalizedViewModelBase
 {
+    #region Private fields
+    private readonly ILocalizationService _localization;
+    private readonly EventHandler _cultureChangedHandler;
+    #endregion
+
     #region Observable Properties
     [ObservableProperty]
     private bool isSelected;
@@ -17,7 +25,7 @@ public partial class UserViewModel : ObservableObject
     private Guid userId;
 
     [ObservableProperty]
-    private string gender = string.Empty;
+    private Gender? gender;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(FullName))]
@@ -50,38 +58,51 @@ public partial class UserViewModel : ObservableObject
 
     [ObservableProperty]
     private string? userName;
+
+    [ObservableProperty]
+    private UserRole role;
+
+    [ObservableProperty]
+    private bool isActive;
+
+    [ObservableProperty]
+    private string? newPassword;
     #endregion
 
     /// <summary>
     /// Gets the full name composed from first name and last name.
     /// </summary>
     public string FullName => $"{FirstName} {LastName}".Trim();
+    public string GenderDisplay => Gender is null ? string.Empty : Translate[$"Common.Gender.{Gender}"];
+    public string RoleDisplay => Translate[$"Features.Users.Role.{Role}"];
 
     // Constructor
-    public UserViewModel()
+    public UserViewModel(User user, ILocalizationService localization) : base(localization)
     {
-    }
+        _localization = localization;
 
-    /// <summary>
-    /// Creates a view model instance from a user entity.
-    /// </summary>
-    public static UserViewModel FromEntity(User user)
-    {
-        return new UserViewModel
+        UserId = user.UserId;
+        Gender = user.Gender;
+        FirstName = user.FirstName;
+        LastName = user.LastName;
+        Initials = user.Initials;
+        Street = user.Street;
+        ZipCode = user.ZipCode;
+        City = user.City;
+        Country = user.Country;
+        Email = user.Email;
+        Phone = user.Phone;
+        UserName = user.UserName;
+        Role = user.Role;
+        IsActive = user.IsActive;
+
+        _cultureChangedHandler = (_, _) =>
         {
-            UserId = user.UserId,
-            Gender = user.Gender,
-            FirstName = user.FirstName,
-            LastName = user.LastName,
-            Initials = user.Initials,
-            Street = user.Street,
-            ZipCode = user.ZipCode,
-            City = user.City,
-            Country = user.Country,
-            Email = user.Email,
-            Phone = user.Phone,
-            UserName = user.UserName
+            OnPropertyChanged(nameof(GenderDisplay));
+            OnPropertyChanged(nameof(RoleDisplay));
         };
+
+        _localization.CultureChanged += _cultureChangedHandler;
     }
 
     /// <summary>
@@ -89,7 +110,7 @@ public partial class UserViewModel : ObservableObject
     /// </summary>
     public User ToEntity()
     {
-        return new User
+        User user = new()
         {
             UserId = UserId,
             Gender = Gender,
@@ -102,7 +123,19 @@ public partial class UserViewModel : ObservableObject
             Country = Country,
             Email = Email,
             Phone = Phone,
-            UserName = UserName
+            UserName = UserName,
+            Role = Role,
+            IsActive = IsActive
         };
+        return user;
+    }
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            _localization.CultureChanged -= _cultureChangedHandler;
+        }
+
+        base.Dispose(disposing);
     }
 }

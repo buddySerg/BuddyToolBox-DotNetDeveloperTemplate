@@ -1,4 +1,7 @@
-﻿namespace BTB.Core.Navigation;
+﻿using BTB.Core.Enums;
+using BTB.Data.Entities;
+
+namespace BTB.Core.Navigation;
 
 /// <summary>
 /// Represents a navigation entry used to register routable views and menu metadata.
@@ -39,4 +42,29 @@ public sealed record NavigationRegistration
     /// Gets a value indicating whether the entry is shown in the footer area.
     /// </summary>
     public bool IsFooterItem { get; init; }
+
+    /// <summary>
+    /// Gets or initializes the roles assigned to the navigation item.
+    /// </summary>
+    public List<UserRole> Roles { get; init; } = new List<UserRole>();
+
+    /// <summary>
+    /// Determines whether the item is visible to the specified user.
+    /// </summary>
+    public bool IsVisible(User? user)
+    {
+        // If no roles are assigned, the item is visible to all users.
+        if (Roles.Count == 0)
+        {
+            return true;
+        }
+
+        // If the user is null (not logged in), the item is not visible.
+        if (user == null)
+        {
+            return false;
+        }
+
+        return Roles.Contains(user.Role);
+    }
 }

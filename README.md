@@ -2,34 +2,46 @@
 A modern .NET WPF application template built on a Feature-Based MVVM architecture for scalable and maintainable desktop applications.
 
 ## Preview
-<p align="center">
-  <img src="docs/Images/Screenshot - Settings.png" width="48%">
-  <img src="docs/Images/Screenshot - Users.png" width="48%">
-</p>
 
-<p align="center">
-  <em>Settings</em> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <em>Users</em>
-</p> 
-<p align="center">
-  <img src="docs/Images/Screenshot - User - ThemeLight.png" width="48%">
-    <br>
-  <em>User (Light Theme)</em>
-</p>
+
+<table>
+<tr>
+<td align="center">
+<img src="docs/Images/Screen-01.png">
+<br>
+<b>Login</b>
+</td>
+<td align="center">
+<img src="docs/Images/Screen-02.png">
+<br>
+<b>Users</b>
+</td>
+</tr>
+<tr>
+<td align="center">
+<img src="docs/Images/Screen-03.png">
+<br>
+<b>Edit User</b>
+</td>
+<td align="center">
+<img src="docs/Images/Screen-04.png">
+<br>
+<b>Settings (Light Theme)</b>
+</td>
+</tr>
+</table>
 
 ## Features
 - Feature-Based MVVM architecture
 - Dependency Injection
 - Entity Framework Core
-- MS SQL Server
+- Microsoft SQL Server
 - Application Localization
 - Application Theming
 - Structured Logging
 - Configuration Management
 - User Management
+- User Authentication
 - WPF UI Integration
 - Clean, Modular and Maintainable Design
 - Reusable Components
@@ -37,10 +49,12 @@ A modern .NET WPF application template built on a Feature-Based MVVM architectur
 ## Technology Stack
 - C#
 - .NET
+- Dependency Injection
 - WPF
-- WPF-UI
+- WPF UI
+- CommunityToolkit.Mvvm
 - Entity Framework Core
-- SQL Server
+- Microsoft SQL Server
 
 ## Architecture
 The application follows a Feature-Based MVVM architecture, organizing functionality by feature instead of technical layers.
@@ -56,10 +70,15 @@ Each feature can encapsulate its own:
 ## Requirements
 - .NET SDK 8.0 or later
 - Visual Studio 2022 or later
-- SQL Server (if required by the application)
+- Microsoft SQL Server (if required by the application)
 
-## Build Project
-For build and setup instructions, see [BUILD.md](BUILD.md).
+## Documentation
+
+The project documentation provides detailed information about the architecture, authentication system, development guidelines, and build process.
+
+- [Documentation](docs/DOCUMENTATION.md)
+- [Build Instructions](docs/BUILD.md)
+- [Changelog](CHANGELOG.md)
 
 ## Project Goals
 
@@ -73,7 +92,15 @@ The template focuses on:
 - Developer Productivity
 - Clean Code Principles
 
+## License
+
+This project is licensed under the MIT License.
+
+See the [License](LICENSE.txt) file for details.
+
 ## Contact
+**Sergej Steinke**
+
 Email: info@steinkeweb.de
  
 LinkedIn: https://www.linkedin.com/in/sergej-steinke

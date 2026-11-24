@@ -1,4 +1,5 @@
 ﻿using BTB.Core.Navigation;
+using BTB.Features.Example;
 using BTB.Features.Settings;
 using BTB.Features.Users;
 
@@ -21,7 +22,8 @@ namespace BTB.Features
             // Features
             services
                 .AddUsersFeature(navigation)
-                .AddSettingsFeature(navigation);
+                .AddSettingsFeature(navigation)
+                .AddExampleFeature();
 
             // Navigation
             services.AddSingleton(navigation);

@@ -61,7 +61,7 @@ namespace BTB.Resources.Languages {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Modern feature-based MVVM application template with navigation, localization, dependency injection, and configuration management. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Modern feature-based MVVM application template with navigation, localization, user management, and configuration management. ähnelt.
         /// </summary>
         internal static string App_Description {
             get {
@@ -70,7 +70,7 @@ namespace BTB.Resources.Languages {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die BuddyToolbox - Developer Template ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die .NET Developer Template ähnelt.
         /// </summary>
         internal static string App_Name {
             get {
@@ -124,6 +124,42 @@ namespace BTB.Resources.Languages {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Female ähnelt.
+        /// </summary>
+        internal static string Common_Gender_Female {
+            get {
+                return ResourceManager.GetString("Common.Gender.Female", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Male ähnelt.
+        /// </summary>
+        internal static string Common_Gender_Male {
+            get {
+                return ResourceManager.GetString("Common.Gender.Male", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Other ähnelt.
+        /// </summary>
+        internal static string Common_Gender_Other {
+            get {
+                return ResourceManager.GetString("Common.Gender.Other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Unknown ähnelt.
+        /// </summary>
+        internal static string Common_Gender_Unknown {
+            get {
+                return ResourceManager.GetString("Common.Gender.Unknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die No ähnelt.
         /// </summary>
         internal static string Common_No {
@@ -138,6 +174,15 @@ namespace BTB.Resources.Languages {
         internal static string Common_Ok {
             get {
                 return ResourceManager.GetString("Common.Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Password ähnelt.
+        /// </summary>
+        internal static string Common_Password {
+            get {
+                return ResourceManager.GetString("Common.Password", resourceCulture);
             }
         }
         
@@ -360,6 +405,15 @@ namespace BTB.Resources.Languages {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Active ähnelt.
+        /// </summary>
+        internal static string Features_Users_Active {
+            get {
+                return ResourceManager.GetString("Features.Users.Active", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Add user ähnelt.
         /// </summary>
         internal static string Features_Users_AddUser {
@@ -524,7 +578,7 @@ namespace BTB.Resources.Languages {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Lastname ähnelt.
         /// </summary>
         internal static string Features_Users_LastName {
             get {
@@ -547,6 +601,15 @@ namespace BTB.Resources.Languages {
         internal static string Features_Users_LoadUsersFailed {
             get {
                 return ResourceManager.GetString("Features.Users.LoadUsersFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Login ähnelt.
+        /// </summary>
+        internal static string Features_Users_Login {
+            get {
+                return ResourceManager.GetString("Features.Users.Login", resourceCulture);
             }
         }
         
@@ -583,6 +646,42 @@ namespace BTB.Resources.Languages {
         internal static string Features_Users_Refresh {
             get {
                 return ResourceManager.GetString("Features.Users.Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Role ähnelt.
+        /// </summary>
+        internal static string Features_Users_Role {
+            get {
+                return ResourceManager.GetString("Features.Users.Role", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Admin ähnelt.
+        /// </summary>
+        internal static string Features_Users_Role_Admin {
+            get {
+                return ResourceManager.GetString("Features.Users.Role.Admin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Guest ähnelt.
+        /// </summary>
+        internal static string Features_Users_Role_Guest {
+            get {
+                return ResourceManager.GetString("Features.Users.Role.Guest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die User ähnelt.
+        /// </summary>
+        internal static string Features_Users_Role_User {
+            get {
+                return ResourceManager.GetString("Features.Users.Role.User", resourceCulture);
             }
         }
         

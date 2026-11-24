@@ -62,6 +62,8 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
                     <TextBlock
@@ -70,18 +72,20 @@
                         Style="{StaticResource Form.LabelStyle}"
                         Text="{Binding Translate[Features.Users.Gender]}" />
 
-                    <ui:TextBox
+                    <ComboBox
                         Grid.Row="0"
                         Grid.Column="2"
-                        Style="{StaticResource Form.TextBoxStyle}"
-                        Text="{Binding User.Gender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        DisplayMemberPath="Value"
+                        ItemsSource="{Binding Genders}"
+                        SelectedValue="{Binding User.Gender}"
+                        SelectedValuePath="Key"
+                        Style="{StaticResource Form.ComboBoxStyle}" />
 
                     <TextBlock
                         Grid.Row="1"
                         Grid.Column="0"
                         Style="{StaticResource Form.LabelStyle}"
                         Text="{Binding Translate[Features.Users.FirstName]}" />
-
                     <ui:TextBox
                         Grid.Row="1"
                         Grid.Column="2"
@@ -93,7 +97,6 @@
                         Grid.Column="0"
                         Style="{StaticResource Form.LabelStyle}"
                         Text="{Binding Translate[Features.Users.LastName]}" />
-
                     <ui:TextBox
                         Grid.Row="2"
                         Grid.Column="2"
@@ -105,7 +108,6 @@
                         Grid.Column="0"
                         Style="{StaticResource Form.LabelStyle}"
                         Text="{Binding Translate[Features.Users.Initials]}" />
-
                     <ui:TextBox
                         Grid.Row="3"
                         Grid.Column="2"
@@ -116,85 +118,110 @@
                         Grid.Row="4"
                         Grid.Column="0"
                         Style="{StaticResource Form.LabelStyle}"
-                        Text="{Binding Translate[Features.Users.UserName]}" />
-
+                        Text="{Binding Translate[Features.Users.Email]}" />
                     <ui:TextBox
                         Grid.Row="4"
-                        Grid.Column="2"
-                        Style="{StaticResource Form.TextBoxStyle}"
-                        Text="{Binding User.UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-                    <TextBlock
-                        Grid.Row="5"
-                        Grid.Column="0"
-                        Style="{StaticResource Form.LabelStyle}"
-                        Text="{Binding User.Translate[Features.Users.Email]}" />
-
-                    <ui:TextBox
-                        Grid.Row="5"
                         Grid.Column="2"
                         Style="{StaticResource Form.TextBoxStyle}"
                         Text="{Binding User.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                     <TextBlock
-                        Grid.Row="6"
+                        Grid.Row="5"
                         Grid.Column="0"
                         Style="{StaticResource Form.LabelStyle}"
                         Text="{Binding Translate[Features.Users.Phone]}" />
-
                     <ui:TextBox
-                        Grid.Row="6"
+                        Grid.Row="5"
                         Grid.Column="2"
                         Style="{StaticResource Form.TextBoxStyle}"
                         Text="{Binding User.Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                     <TextBlock
-                        Grid.Row="8"
+                        Grid.Row="6"
                         Grid.Column="0"
                         Style="{StaticResource Form.LabelStyle}"
                         Text="{Binding Translate[Features.Users.Street]}" />
-
                     <ui:TextBox
-                        Grid.Row="8"
+                        Grid.Row="6"
                         Grid.Column="2"
                         Style="{StaticResource Form.TextBoxStyle}"
                         Text="{Binding User.Street, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                     <TextBlock
-                        Grid.Row="9"
+                        Grid.Row="7"
                         Grid.Column="0"
                         Style="{StaticResource Form.LabelStyle}"
                         Text="{Binding Translate[Features.Users.ZipCode]}" />
-
                     <ui:TextBox
-                        Grid.Row="9"
+                        Grid.Row="7"
                         Grid.Column="2"
                         Style="{StaticResource Form.TextBoxStyle}"
                         Text="{Binding User.ZipCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                     <TextBlock
-                        Grid.Row="10"
+                        Grid.Row="8"
                         Grid.Column="0"
                         Style="{StaticResource Form.LabelStyle}"
                         Text="{Binding Translate[Features.Users.City]}" />
-
                     <ui:TextBox
-                        Grid.Row="10"
+                        Grid.Row="8"
                         Grid.Column="2"
                         Style="{StaticResource Form.TextBoxStyle}"
                         Text="{Binding User.City, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                     <TextBlock
-                        Grid.Row="11"
+                        Grid.Row="9"
                         Grid.Column="0"
                         Style="{StaticResource Form.LabelStyle}"
                         Text="{Binding Translate[Features.Users.Country]}" />
-
                     <ui:TextBox
-                        Grid.Row="11"
+                        Grid.Row="9"
                         Grid.Column="2"
                         Style="{StaticResource Form.TextBoxStyle}"
                         Text="{Binding User.Country, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <CheckBox
+                        Grid.Row="10"
+                        Grid.Column="2"
+                        Margin="-10,0,0,10"
+                        Content="{Binding Translate[Features.Users.Active]}"
+                        IsChecked="{Binding User.IsActive}" />
+
+                    <TextBlock
+                        Grid.Row="11"
+                        Grid.Column="0"
+                        Style="{StaticResource Form.LabelStyle}"
+                        Text="{Binding Translate[Features.Users.Role]}" />
+                    <ComboBox
+                        Grid.Row="11"
+                        Grid.Column="2"
+                        DisplayMemberPath="Value"
+                        ItemsSource="{Binding Roles}"
+                        SelectedValue="{Binding User.Role}"
+                        SelectedValuePath="Key"
+                        Style="{StaticResource Form.ComboBoxStyle}" />
+
+                    <TextBlock
+                        Grid.Row="12"
+                        Grid.Column="0"
+                        Style="{StaticResource Form.LabelStyle}"
+                        Text="{Binding Translate[Features.Users.UserName]}" />
+                    <ui:TextBox
+                        Grid.Row="12"
+                        Grid.Column="2"
+                        Style="{StaticResource Form.TextBoxStyle}"
+                        Text="{Binding User.UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBlock
+                        Grid.Row="13"
+                        Grid.Column="0"
+                        Style="{StaticResource Form.LabelStyle}"
+                        Text="{Binding Translate[Common.Password]}" />
+                    <ui:PasswordBox
+                        Grid.Row="13"
+                        Grid.Column="2"
+                        Password="{Binding User.NewPassword, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
+                        Style="{StaticResource Form.TextBoxStyle}" />
 
                 </Grid>
 

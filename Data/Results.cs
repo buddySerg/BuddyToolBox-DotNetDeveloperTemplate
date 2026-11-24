@@ -1,40 +1,6 @@
-﻿namespace BTB.Data;
+﻿using BTB.Core.Enums;
 
-/// <summary>
-/// Represents the possible outcomes of an operation.
-/// </summary>
-public enum ResultStatus
-{
-    /// <summary>
-    /// The operation completed successfully.
-    /// </summary>
-    Success,
-
-    /// <summary>
-    /// The requested resource was not found.
-    /// </summary>
-    NotFound,
-
-    /// <summary>
-    /// The operation failed validation checks.
-    /// </summary>
-    ValidationError,
-
-    /// <summary>
-    /// The operation could not be completed due to a conflict.
-    /// </summary>
-    Conflict,
-
-    /// <summary>
-    /// The operation failed unexpectedly.
-    /// </summary>
-    Failure,
-
-    /// <summary>
-    /// The operation was canceled.
-    /// </summary>
-    Canceled
-}
+namespace BTB.Data;
 
 /// <summary>
 /// Represents the result of an operation, including its status and any associated error message.
@@ -51,6 +17,7 @@ public class Result
     public bool IsValidationError => Status == ResultStatus.ValidationError;
     public bool IsConflict => Status == ResultStatus.Conflict;
     public bool IsCanceled => Status == ResultStatus.Canceled;
+    public bool IsUnauthorized => Status == ResultStatus.Unauthorized;
     #endregion
 
     // Constructor
@@ -68,6 +35,7 @@ public class Result
     public static Result Conflict(string? message = null) => new(ResultStatus.Conflict, message);
     public static Result Failure(string? message = null) => new(ResultStatus.Failure, message);
     public static Result Canceled(string? message = null) => new(ResultStatus.Canceled, message);
+    public static Result Unauthorized(string? message = null) => new(ResultStatus.Unauthorized, message);
     #endregion
 }
 
@@ -93,6 +61,7 @@ public class Result<T> : Result
     public static new Result<T> Conflict(string? message = null) => new(ResultStatus.Conflict, default, message);
     public static new Result<T> Failure(string? message = null) => new(ResultStatus.Failure, default, message);
     public static new Result<T> Canceled(string? message = null) => new(ResultStatus.Canceled, default, message);
+    public static new Result<T> Unauthorized(string? message = null) => new(ResultStatus.Unauthorized, default, message);
 
     /// <summary>
     /// Attempts to get the result value.

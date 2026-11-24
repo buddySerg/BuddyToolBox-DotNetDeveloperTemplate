@@ -3,15 +3,17 @@ using System.IO;
 using System.Windows;
 
 using BTB.Core;
+using BTB.Core.Base;
 using BTB.Core.Dialogs;
+using BTB.Core.Enums;
 using BTB.Core.Localization;
-using BTB.Core.Navigation;
 using BTB.Core.Repositories;
 using BTB.Core.Security;
 using BTB.Core.Settings;
 using BTB.Core.Theme;
 using BTB.Data;
 using BTB.Data.Database;
+using BTB.Data.Repositories;
 using BTB.Features;
 using BTB.Features.Navigation;
 using BTB.Features.SplashScreen;
@@ -29,22 +31,58 @@ namespace BTB;
 
 public partial class App : Application
 {
-    // private Properties
+    #region Private fields
+    /// <summary>
+    /// The application host, if initialized.
+    /// </summary>
     private IHost? _host;
     private const int SplashScreenDelay = 300; // Minimum time to show the splash screen in milliseconds
+    #endregion
 
-    private static IHost CreateHost()
+    #region Public Properties
+    /// <summary>
+    /// Gets the service provider associated with the host.
+    /// </summary>
+    public IServiceProvider Services => _host?.Services ?? throw new InvalidOperationException("Host not initialized.");
+    #endregion
+
+    /// <summary>
+    /// Initializes the application host and starts the application.
+    /// </summary>
+    protected override async void OnStartup(StartupEventArgs e)
     {
-        HostApplicationBuilder builder = Host.CreateApplicationBuilder();
+        SplashWindow? splashWindow = null;
 
-        ConfigureConfigurationAndSettings(builder);
-        ConfigureLogging(builder);
-        ConfigureServices(builder);
-        ConfigureDatabase(builder);
+        base.OnStartup(e);
 
-        return builder.Build();
+        try
+        {
+            HostApplicationBuilder builder = Host.CreateApplicationBuilder();
+
+            ConfigureConfigurationAndSettings(builder);
+            ConfigureLogging(builder);
+            ConfigureServices(builder);
+            ConfigureDatabase(builder);
+            _host = builder.Build();
+            await _host.StartAsync();
+
+            splashWindow = _host?.Services.GetRequiredService<SplashWindow>();
+            await ConfigureAndStartApplication(splashWindow);
+        }
+        catch (Exception ex)
+        {
+            Log.Fatal(ex, "Application startup failed.");
+            MessageBox.Show("Application startup failed.\n\nSee log file for details.", "Application startup error", MessageBoxButton.OK, MessageBoxImage.Error);
+            splashWindow?.Close();
+            Shutdown(-1);
+        }
     }
 
+    #region Private Methods
+
+    /// <summary>
+    /// Loads optional application configuration files and binds validated application settings.
+    /// </summary>
     private static void ConfigureConfigurationAndSettings(HostApplicationBuilder builder)
     {
         builder.Configuration
@@ -59,13 +97,15 @@ public partial class App : Application
             .ValidateOnStart();
     }
 
+    /// <summary>
+    /// Configures Serilog logging from the application configuration and registered services.
+    /// </summary>
     private static void ConfigureLogging(HostApplicationBuilder builder)
     {
         builder.Services
             .AddSerilog((services, configuration) => configuration.ReadFrom.Configuration(builder.Configuration)
             .ReadFrom.Services(services));
     }
-
 
     /// <summary>
     /// Configures the services for the application.
@@ -83,6 +123,9 @@ public partial class App : Application
             return new JsonRepository<UserSettings>(Path.Combine(settingsDirectory, "settings.user.json"), logger);
         });
         services.AddSingleton<IUserSettingsService, UserSettingsService>();
+
+        // Register Application State
+        services.AddSingleton<ApplicationState>();
 
         // DPAPI (Data Protection API)
         services.AddSingleton<IEncryptionService, DpapiEncryptionService>();
@@ -117,6 +160,10 @@ public partial class App : Application
         services.AddFeatures();
     }
 
+    /// <summary>
+    /// Configures the database context factory to use SQL Server with the connection string from the current
+    /// application settings.
+    /// </summary>
     private static void ConfigureDatabase(HostApplicationBuilder builder)
     {
         builder.Services.AddDbContextFactory<AppDbContext>(
@@ -142,76 +189,72 @@ public partial class App : Application
               });
     }
 
-    protected override async void OnStartup(StartupEventArgs e)
+    /// <summary>
+    /// Configures application state and startup services, then opens the main window.
+    /// </summary>
+    private async Task ConfigureAndStartApplication(SplashWindow? splash)
     {
-        base.OnStartup(e);
+        if (_host == null)
+        {
+            return;
+        }
 
-        SplashWindow? splash = null;
+        // Show Splash Screen
+        SplashViewModel splashViewModel = _host.Services.GetRequiredService<SplashViewModel>();
+        splash?.Show();
 
+        // Set IsAuthenticationRequired of Application State 
+        ApplicationState applicationState = _host.Services.GetRequiredService<ApplicationState>();
+        IUserRepository userRepository = _host.Services.GetRequiredService<IUserRepository>();
+        applicationState.IsAuthenticationRequired = (await userRepository.IsAuthenticationRequiredAsync()).Value;
+
+        // Settings 
+        await splashViewModel.UpdateStatusAsync(StartupStep.LoadingSettings, 15);
+        IUserSettingsService userSettingsService = _host.Services.GetRequiredService<IUserSettingsService>();
+        await userSettingsService.LoadAsync();
+
+        // Theme
+        await splashViewModel.UpdateStatusAsync(StartupStep.ApplyingTheme, 30);
+        IThemeService themeService = _host.Services.GetRequiredService<IThemeService>();
+        themeService.SetTheme(userSettingsService.CurrentSettings.Theme);
+
+        // Database migrations
         try
         {
-            // Create and start the host
-            _host = CreateHost();
-            await _host.StartAsync();
-
-            // Show Splash Screen
-            SplashViewModel splashViewModel = _host.Services.GetRequiredService<SplashViewModel>();
-            splash = _host.Services.GetRequiredService<SplashWindow>();
-            splash.Show();
-
-            // Settings 
-            await splashViewModel.UpdateStatusAsync(StartupStep.LoadingSettings, 15);
-            IUserSettingsService userSettingsService = _host.Services.GetRequiredService<IUserSettingsService>();
-            await userSettingsService.LoadAsync();
-
-            // Theme
-            await splashViewModel.UpdateStatusAsync(StartupStep.ApplyingTheme, 30);
-            IThemeService themeService = _host.Services.GetRequiredService<IThemeService>();
-            themeService.SetTheme(userSettingsService.CurrentSettings.Theme);
-
-            // Database migrations
-            try
-            {
-                await splashViewModel.UpdateStatusAsync(StartupStep.UpdatingDatabase, 55);
-                DatabaseUpdateService databaseUpdateService = _host.Services.GetRequiredService<DatabaseUpdateService>();
-                await databaseUpdateService.UpdateAsync();
-            }
-            catch (Exception ex)
-            {
-                Log.Fatal(ex, "Database connection failed.");
-                MessageBox.Show("Database connection failed.\n\nSee log file for details.", "Database connection error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-
-            // localization
-
-            await splashViewModel.UpdateStatusAsync(StartupStep.ApplyingLanguage, 70);
-            ILocalizationService localizationService = _host.Services.GetRequiredService<ILocalizationService>();
-            localizationService.SetCulture(CultureInfo.GetCultureInfo(userSettingsService.CurrentSettings.UiCulture));
-
-            // Set Navigation to the Users as start
-            await splashViewModel.UpdateStatusAsync(StartupStep.LoadingUsers, 85);
-            INavigationService navigationService = _host.Services.GetRequiredService<INavigationService>();
-            await navigationService.NavigateAsync("users");
-
-            // MainWindow and MainViewModel
-            await splashViewModel.UpdateStatusAsync(StartupStep.StartingApplication, 100);
-            MainWindow window = _host.Services.GetRequiredService<MainWindow>();
-            MainWindow = window;
-
-            // Show the main window
-            window.Show();
-
-            await Task.Delay(SplashScreenDelay);
-            splash.Close();
+            await splashViewModel.UpdateStatusAsync(StartupStep.UpdatingDatabase, 55);
+            DatabaseUpdateService databaseUpdateService = _host.Services.GetRequiredService<DatabaseUpdateService>();
+            await databaseUpdateService.UpdateAsync();
         }
         catch (Exception ex)
         {
-            Log.Fatal(ex, "Application startup failed.");
-            MessageBox.Show("Application startup failed.\n\nSee log file for details.", "Application startup error", MessageBoxButton.OK, MessageBoxImage.Error);
-            splash?.Close();
-            Shutdown(-1);
+            Log.Fatal(ex, "Database connection failed.");
+            MessageBox.Show("Database connection failed.\n\nSee log file for details.", "Database connection error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
+        // Localization
+        await splashViewModel.UpdateStatusAsync(StartupStep.ApplyingLanguage, 70);
+        ILocalizationService localizationService = _host.Services.GetRequiredService<ILocalizationService>();
+        localizationService.SetCulture(CultureInfo.GetCultureInfo(userSettingsService.CurrentSettings.UiCulture));
+
+        // Set Navigation to the Users as start
+        await splashViewModel.UpdateStatusAsync(StartupStep.LoadingUsers, 85);
+        // INavigationService navigationService = _host.Services.GetRequiredService<INavigationService>();
+        // await navigationService.NavigateAsync("users");
+
+
+        // MainWindow and MainViewModel
+        await splashViewModel.UpdateStatusAsync(StartupStep.StartingApplication, 100);
+        MainWindow window = _host.Services.GetRequiredService<MainWindow>();
+        MainWindow = window;
+
+        // Show the main window
+        window.Show();
+
+        await Task.Delay(SplashScreenDelay);
+        splash?.Close();
     }
+
+    #endregion
 
     /// <summary>
     /// Stops and disposes the application host, flushes pending log entries, and completes the WPF application shutdown process.

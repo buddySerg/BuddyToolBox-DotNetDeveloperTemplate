@@ -2,9 +2,11 @@
 
 using BTB.Core.Base;
 using BTB.Core.Dialogs;
+using BTB.Core.Enums;
 using BTB.Core.Helpers;
 using BTB.Core.Localization;
 using BTB.Core.Navigation;
+using BTB.Core.Security;
 using BTB.Data;
 using BTB.Data.Entities;
 using BTB.Data.Repositories;
@@ -26,6 +28,7 @@ public partial class UserEditViewModel : LocalizedViewModelBase, INavigationAwar
     private readonly INavigationService _navigationService;
     private readonly ILogger<UserEditViewModel> _logger;
     private readonly IDialogService _dialogService;
+    private readonly IEncryptionService _encryptionService;
     private User? _snapshot;
     private bool CanSave => IsDirty;
     #endregion
@@ -50,13 +53,24 @@ public partial class UserEditViewModel : LocalizedViewModelBase, INavigationAwar
     /// </summary>
     public string Title => IsEditMode ? Translate["Features.Users.EditUser"] : Translate["Features.Users.AddUser"];
 
+    /// <summary>
+    /// Gets all available user roles.
+    /// </summary>
+    public IEnumerable<KeyValuePair<UserRole, string>> Roles => EnumHelper.GetLocalizedItems<UserRole>(Translate, "Features.Users.Role");
+
+    /// <summary>
+    /// Gets all available genders.
+    /// </summary>
+    public IEnumerable<KeyValuePair<Gender, string>> Genders => EnumHelper.GetLocalizedItems<Gender>(Translate, "Common.Gender");
+
     #region Constructor
-    public UserEditViewModel(ILocalizationService localization, IUserRepository repository, INavigationService navigationService, ILogger<UserEditViewModel> logger, IDialogService dialogService) : base(localization)
+    public UserEditViewModel(IEncryptionService encryptionService, ILocalizationService localization, IUserRepository repository, INavigationService navigationService, ILogger<UserEditViewModel> logger, IDialogService dialogService) : base(localization)
     {
         _repository = repository;
         _navigationService = navigationService;
         _logger = logger;
         _dialogService = dialogService;
+        _encryptionService = encryptionService;
     }
     #endregion
 
@@ -71,7 +85,7 @@ public partial class UserEditViewModel : LocalizedViewModelBase, INavigationAwar
 
         if (!context.Parameters.TryGetValue("UserId", out string? value))
         {
-            User = new UserViewModel();
+            User = new UserViewModel(new User(), Translate);
             SubscribeToUser();
             IsDirty = false;
             return;
@@ -98,7 +112,7 @@ public partial class UserEditViewModel : LocalizedViewModelBase, INavigationAwar
                 return;
             }
 
-            User = UserViewModel.FromEntity(loadedUser);
+            User = new UserViewModel(loadedUser, Translate);
             _snapshot = loadedUser;
             IsDirty = false;
             SubscribeToUser();
@@ -138,7 +152,10 @@ public partial class UserEditViewModel : LocalizedViewModelBase, INavigationAwar
         }
         else
         {
-            IsDirty = !ObjectComparer.AreEqual(_snapshot, User.ToEntity());
+            IEnumerable<ObjectDifference> userDifferences = ObjectComparer.GetDifferences(_snapshot, User.ToEntity()).Where(ds => ds.PropertyPath != "UserPassword");
+
+            bool passwordChanged = !string.IsNullOrWhiteSpace(User.NewPassword);
+            IsDirty = passwordChanged || userDifferences.Any();
         }
         SaveCommand.NotifyCanExecuteChanged();
     }
@@ -158,24 +175,31 @@ public partial class UserEditViewModel : LocalizedViewModelBase, INavigationAwar
         }
 
         UserViewModel userVM = User;
+        User userEntity = userVM.ToEntity();
+        userEntity.UserPassword = _snapshot?.UserPassword;
 
         try
         {
             Result<User> result;
 
+            if (!string.IsNullOrWhiteSpace(userVM.NewPassword))
+            {
+                userEntity.UserPassword = _encryptionService.Encrypt(userVM.NewPassword);
+            }
+
             if (IsEditMode)
             {
-                result = await _repository.UpdateAsync(userVM.ToEntity());
+                result = await _repository.UpdateAsync(userEntity);
             }
             else
             {
-                userVM.UserId = Guid.NewGuid();
-                result = await _repository.AddAsync(userVM.ToEntity());
+                userEntity.UserId = Guid.NewGuid();
+                result = await _repository.AddAsync(userEntity);
             }
 
             if (!result.IsSuccess || !result.TryGetValue(out User? savedUser) || savedUser is null)
             {
-                _logger.LogWarning("Failed to {Operation} user. UserId: {UserId}", IsEditMode ? "update" : "create", userVM.UserId);
+                _logger.LogWarning("Failed to {Operation} user. UserId: {UserId}", IsEditMode ? "update" : "create", userEntity.UserId);
                 await _dialogService.ShowError(Translate["Features.Users.SaveUserFailed"]);
                 return;
             }
