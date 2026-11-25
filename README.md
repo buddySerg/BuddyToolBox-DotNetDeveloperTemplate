@@ -112,6 +112,5 @@ Have questions, feedback, or suggestions? Feel free to get in touch!
 
 **Sergej Steinke**
 
-Email: info@BuddyToolBox.de
- 
-LinkedIn: https://www.linkedin.com/in/sergej-steinke
+- **Email:** [info@BuddyToolBox.de](mailto:info@BuddyToolBox.de)
+- **LinkedIn:** [https://www.linkedin.com/in/sergej-steinke](https://www.linkedin.com/in/sergej-steinke)
