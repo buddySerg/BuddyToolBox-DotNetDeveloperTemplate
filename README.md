@@ -1,8 +1,7 @@
-# BuddyToolBox - .NET Developer Template
+ # .NET Developer Template
 A modern .NET WPF application template built on a Feature-Based MVVM architecture for scalable and maintainable desktop applications.
 
-## Preview
-
+## Screenshots
 
 <table>
 <tr>
@@ -47,11 +46,10 @@ A modern .NET WPF application template built on a Feature-Based MVVM architectur
 - Reusable Components
 
 ## Technology Stack
-- C#
-- .NET
+- C# & .NET
 - Dependency Injection
 - WPF
-- WPF UI
+- WPF UI 4.3.0
 - CommunityToolkit.Mvvm
 - Entity Framework Core
 - Microsoft SQL Server
@@ -92,15 +90,28 @@ The template focuses on:
 - Developer Productivity
 - Clean Code Principles
 
+## Feedback & Suggestions
+
+I'd love to hear your feedback, ideas, and suggestions!
+
+Whether it's a small improvement, a new feature idea, or constructive criticism – all feedback is very welcome and appreciated.
+
 ## License
 
-This project is licensed under the MIT License.
+The .NET Developer Template is free and open-source software licensed under the MIT License.
 
-See the [License](LICENSE.txt) file for details.
+You are free to use, modify, and distribute it in both personal and commercial projects.
+
+Please make sure to include a copy of the MIT License in your project.
+
+See the [LICENSE](LICENSE.txt) file for details.
 
 ## Contact
+
+Have questions, feedback, or suggestions? Feel free to get in touch!
+
 **Sergej Steinke**
 
-Email: info@steinkeweb.de
+Email: info@BuddyToolBox.de
  
 LinkedIn: https://www.linkedin.com/in/sergej-steinke
