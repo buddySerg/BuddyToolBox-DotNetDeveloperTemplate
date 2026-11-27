@@ -191,7 +191,8 @@
                         Grid.Row="11"
                         Grid.Column="0"
                         Style="{StaticResource Form.LabelStyle}"
-                        Text="{Binding Translate[Features.Users.Role]}" />
+                        Text="{Binding Translate[Features.Users.Role]}"
+                        Visibility="{Binding ShowAuthenticationData, Converter={StaticResource BooleanToVisibilityConverter}}" />
                     <ComboBox
                         Grid.Row="11"
                         Grid.Column="2"
@@ -199,29 +200,34 @@
                         ItemsSource="{Binding Roles}"
                         SelectedValue="{Binding User.Role}"
                         SelectedValuePath="Key"
-                        Style="{StaticResource Form.ComboBoxStyle}" />
+                        Style="{StaticResource Form.ComboBoxStyle}"
+                        Visibility="{Binding ShowAuthenticationData, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
                     <TextBlock
                         Grid.Row="12"
                         Grid.Column="0"
                         Style="{StaticResource Form.LabelStyle}"
-                        Text="{Binding Translate[Features.Users.UserName]}" />
+                        Text="{Binding Translate[Features.Users.UserName]}"
+                        Visibility="{Binding ShowAuthenticationData, Converter={StaticResource BooleanToVisibilityConverter}}" />
                     <ui:TextBox
                         Grid.Row="12"
                         Grid.Column="2"
                         Style="{StaticResource Form.TextBoxStyle}"
-                        Text="{Binding User.UserName}" />
+                        Text="{Binding User.UserName}"
+                        Visibility="{Binding ShowAuthenticationData, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
                     <TextBlock
                         Grid.Row="13"
                         Grid.Column="0"
                         Style="{StaticResource Form.LabelStyle}"
-                        Text="{Binding Translate[Common.Password]}" />
+                        Text="{Binding Translate[Common.Password]}"
+                        Visibility="{Binding ShowAuthenticationData, Converter={StaticResource BooleanToVisibilityConverter}}" />
                     <ui:PasswordBox
                         Grid.Row="13"
                         Grid.Column="2"
                         Password="{Binding User.NewPassword}"
-                        Style="{StaticResource Form.TextBoxStyle}" />
+                        Style="{StaticResource Form.TextBoxStyle}"
+                        Visibility="{Binding ShowAuthenticationData, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
                 </Grid>
 

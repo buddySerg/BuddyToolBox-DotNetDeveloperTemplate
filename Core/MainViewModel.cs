@@ -31,8 +31,9 @@ namespace BTB.Core
         public string? AppVersion { get; }
         public bool IsLoggedIn => _applicationState.IsLoggedIn;
         public string UserNameDisplay => _applicationState.CurrentUser?.FullName ?? "Guest";
-        public bool ShowUserName => _applicationState.IsAuthenticationRequired && _applicationState.IsLoggedIn;
-        public bool ShowLoginButton => _applicationState.IsAuthenticationRequired && !_applicationState.IsLoggedIn;
+        public bool ShowUserName => _applicationState.Build.AuthenticationEnabled && _applicationState.IsAuthenticationRequired && _applicationState.IsLoggedIn;
+        public bool ShowLoginButton => _applicationState.Build.AuthenticationEnabled && _applicationState.IsAuthenticationRequired && !_applicationState.IsLoggedIn;
+        public bool ShowLogoutButton => _applicationState.Build.AuthenticationEnabled && _applicationState.IsAuthenticationRequired && _applicationState.IsLoggedIn;
         #endregion
 
         /// <summary>

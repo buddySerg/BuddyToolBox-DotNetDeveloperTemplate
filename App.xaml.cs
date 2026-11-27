@@ -206,7 +206,7 @@ public partial class App : Application
         // Set IsAuthenticationRequired of Application State 
         ApplicationState applicationState = _host.Services.GetRequiredService<ApplicationState>();
         IUserRepository userRepository = _host.Services.GetRequiredService<IUserRepository>();
-        applicationState.IsAuthenticationRequired = (await userRepository.IsAuthenticationRequiredAsync()).Value;
+        applicationState.IsAuthenticationRequired = applicationState.Build.AuthenticationEnabled && (await userRepository.IsAuthenticationRequiredAsync()).Value;
 
         // Settings 
         await splashViewModel.UpdateStatusAsync(StartupStep.LoadingSettings, 15);

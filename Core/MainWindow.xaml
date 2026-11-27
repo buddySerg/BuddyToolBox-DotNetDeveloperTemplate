@@ -130,7 +130,7 @@
                     Command="{Binding LogoutCommand}"
                     Cursor="Hand"
                     ToolTip="{Binding Translate[Features.Users.Logout]}"
-                    Visibility="{Binding ShowLoginButton, Converter={StaticResource InverseBoolToVisibilityConverter}}">
+                    Visibility="{Binding ShowLogoutButton, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                     <ui:SymbolIcon
                         Filled="False"

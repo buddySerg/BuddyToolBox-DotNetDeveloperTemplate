@@ -3,17 +3,39 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net10.0-windows</TargetFramework>
+	
 	<Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+	
 	<Company>BuddyToolBox</Company>	
 	<Name>.NET Developer Template</Name>	
 	<Product>.NET Developer Template</Product>
+	
 	<Description>Modern feature-based MVVM application template with navigation, localization, dependency injection, and configuration management.</Description>
 	<Copyright>© 2026 BuddyToolBox. All rights reserved.</Copyright>
+	
     <AssemblyVersion>1.0.1</AssemblyVersion>
     <FileVersion>1.0.1</FileVersion>
     <Version>1.0.1</Version>	
+	
+	<!-- Standard Build-Konfigurationen -->
+    <Configurations>
+		Debug;
+		Release
+	</Configurations>
+
+    <!-- Features -->
+    <EnableAuthentication>true</EnableAuthentication>
+
+  </PropertyGroup>
+  
+  <!-- ========================================================= -->
+  <!-- Features                                                  -->
+  <!-- ========================================================= -->
+  <!-- Enable AUTHENTICATION compiler constant when authentication support is included -->
+  <PropertyGroup Condition="'$(EnableAuthentication)' == 'true'">
+	<DefineConstants>$(DefineConstants);AUTHENTICATION</DefineConstants>
   </PropertyGroup>
   
   <ItemGroup>

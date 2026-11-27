@@ -29,6 +29,7 @@ public partial class UserEditViewModel : LocalizedViewModelBase, INavigationAwar
     private readonly ILogger<UserEditViewModel> _logger;
     private readonly IDialogService _dialogService;
     private readonly IEncryptionService _encryptionService;
+    private readonly ApplicationState _applicationState;
     private User? _snapshot;
     private bool CanSave => IsDirty;
     #endregion
@@ -63,14 +64,24 @@ public partial class UserEditViewModel : LocalizedViewModelBase, INavigationAwar
     /// </summary>
     public IEnumerable<KeyValuePair<Gender, string>> Genders => EnumHelper.GetLocalizedItems<Gender>(Translate, "Common.Gender");
 
+    public bool ShowAuthenticationData => _applicationState.Build.AuthenticationEnabled;
+
     #region Constructor
-    public UserEditViewModel(IEncryptionService encryptionService, ILocalizationService localization, IUserRepository repository, INavigationService navigationService, ILogger<UserEditViewModel> logger, IDialogService dialogService) : base(localization)
+    public UserEditViewModel(
+        IEncryptionService encryptionService,
+        ILocalizationService localization,
+        IUserRepository repository,
+        INavigationService navigationService,
+        ILogger<UserEditViewModel> logger,
+        IDialogService dialogService,
+        ApplicationState applicationState) : base(localization)
     {
         _repository = repository;
         _navigationService = navigationService;
         _logger = logger;
         _dialogService = dialogService;
         _encryptionService = encryptionService;
+        _applicationState = applicationState;
     }
     #endregion
 

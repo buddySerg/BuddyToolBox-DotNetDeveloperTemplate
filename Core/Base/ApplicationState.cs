@@ -8,7 +8,9 @@ namespace BTB.Core.Base;
 public sealed class ApplicationState
 {
 
-    #region Public Properties
+    #region Public Properties   
+    public ApplicationBuildInfo Build { get; } = new ApplicationBuildInfo();
+
     /// <summary>
     /// Gets or sets a value indicating whether authentication is required.
     /// </summary>
@@ -22,12 +24,12 @@ public sealed class ApplicationState
     /// <summary>
     /// Gets a value indicating whether a user is currently signed in.
     /// </summary>
-    public bool IsLoggedIn => CurrentUser != null;
+    public bool IsLoggedIn => !Build.AuthenticationEnabled || CurrentUser != null;
 
     /// <summary>
     /// Gets a value indicating whether the application can be accessed.
     /// </summary>
-    public bool CanAccessApplication => !IsAuthenticationRequired || IsLoggedIn;
+    public bool CanAccessApplication => !Build.AuthenticationEnabled || !IsAuthenticationRequired || IsLoggedIn;
     #endregion
 
     #region Public Methods
