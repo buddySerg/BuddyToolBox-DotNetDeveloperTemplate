@@ -14,7 +14,7 @@
 
     </UserControl.Resources>
 
-    <Grid Background="{DynamicResource Brush.Content}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -68,14 +68,24 @@
                     </DataGridTemplateColumn>
 
                     <DataGridTextColumn Binding="{Binding GenderDisplay}" Header="{Binding Data.Translate[Features.Users.Gender], Source={StaticResource ViewModelProxy}}" />
-                    <DataGridTextColumn Binding="{Binding FullName}" Header="{Binding Data.Translate[Features.Users.FullName], Source={StaticResource ViewModelProxy}}" />
-                    <DataGridTextColumn Binding="{Binding UserName}" Header="{Binding Data.Translate[Features.Users.UserName], Source={StaticResource ViewModelProxy}}" />
-                    <DataGridTextColumn Binding="{Binding RoleDisplay}" Header="{Binding Data.Translate[Features.Users.Role], Source={StaticResource ViewModelProxy}}" />
+                    <DataGridTextColumn Binding="{Binding FirstName}" Header="{Binding Data.Translate[Features.Users.FirstName], Source={StaticResource ViewModelProxy}}" />
+                    <DataGridTextColumn Binding="{Binding LastName}" Header="{Binding Data.Translate[Features.Users.LastName], Source={StaticResource ViewModelProxy}}" />
                     <DataGridTextColumn Binding="{Binding Initials}" Header="{Binding Data.Translate[Features.Users.Initials], Source={StaticResource ViewModelProxy}}" />
                     <DataGridTextColumn Binding="{Binding Email}" Header="{Binding Data.Translate[Features.Users.Email], Source={StaticResource ViewModelProxy}}" />
                     <DataGridTextColumn Binding="{Binding Phone}" Header="{Binding Data.Translate[Features.Users.Phone], Source={StaticResource ViewModelProxy}}" />
-                    <DataGridTextColumn Binding="{Binding City}" Header="{Binding Data.Translate[Features.Users.City], Source={StaticResource ViewModelProxy}}" />
-                    <DataGridTextColumn Binding="{Binding Country}" Header="{Binding Data.Translate[Features.Users.Country], Source={StaticResource ViewModelProxy}}" />
+                    <DataGridTextColumn Binding="{Binding AddressDisplay}" Header="{Binding Data.Translate[Features.Users.Address], Source={StaticResource ViewModelProxy}}" />
+                    <DataGridTextColumn Binding="{Binding UserName}" Header="{Binding Data.Translate[Features.Users.UserName], Source={StaticResource ViewModelProxy}}" />
+                    <DataGridTextColumn Binding="{Binding RoleDisplay}" Header="{Binding Data.Translate[Features.Users.Role], Source={StaticResource ViewModelProxy}}" />
+                    <DataGridTemplateColumn Width="80" Header="{Binding Data.Translate[Features.Users.IsActive], Source={StaticResource ViewModelProxy}}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox
+                                    HorizontalAlignment="Center"
+                                    IsChecked="{Binding IsActive}"
+                                    IsEnabled="False" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
 
                 </ui:DataGrid.Columns>
             </ui:DataGrid>
@@ -87,18 +97,19 @@
                 Margin="0,0,0,0"
                 Command="{Binding AddCommand}"
                 Content="{Binding Translate[Features.Users.AddUser]}"
-                Icon="{ui:SymbolIcon Symbol=PersonAdd24}" />
+                Icon="{ui:SymbolIcon Symbol=AddCircle20}" />
             <ui:Button
                 Margin="10,0,0,0"
                 Command="{Binding EditCommand}"
                 Content="{Binding Translate[Features.Users.EditUser]}"
-                Icon="{ui:SymbolIcon Symbol=PersonEdit24}" />
+                Icon="{ui:SymbolIcon Symbol=Edit20}" />
+
             <ui:Button
                 Margin="10,0,0,0"
                 Appearance="Danger"
                 Command="{Binding DeleteCommand}"
                 Content="{Binding Translate[Features.Users.DeleteUser]}"
-                Icon="{ui:SymbolIcon Symbol=PersonDelete24}" />
+                Icon="{ui:SymbolIcon Symbol=Delete20}" />
         </StackPanel>
 
     </Grid>

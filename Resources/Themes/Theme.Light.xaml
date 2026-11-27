@@ -3,31 +3,49 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml">
 
-    <!--  Window  -->
-    <SolidColorBrush x:Key="Brush.Window.Background" Color="#ffffff" />
+    <!--  region: WPFUI Colors  -->
 
-    <!--  TopBar  -->
+    <!--  Do not rename. It is used by the IThemeService.  -->
+    <Color x:Key="AccentColor">#FF0199ea</Color>
+
+    <!--  Textbox  -->
+    <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="#FFffffff" />
+
+    <!--  Content Dialog  -->
+    <SolidColorBrush x:Key="ContentDialogBackground" Color="#FFF5F7FB" />
+    <SolidColorBrush x:Key="ContentDialogTopOverlay" Color="#FFF8FAFC" />
+
+    <!--  region: TopBar  -->
     <SolidColorBrush x:Key="Brush.TopBar" Color="#262b3b" />
     <SolidColorBrush x:Key="Brush.TopBar.Text" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="Brush.TopBar.Icon" Color="#FF0199ea" />
     <SolidColorBrush x:Key="Brush.TopBar.Border" Color="#1e222e" />
 
-    <!--  Navigation  -->
-    <SolidColorBrush x:Key="Brush.Navigation" Color="#FFFFFF" />
-    <SolidColorBrush x:Key="Brush.Navigation.Border" Color="#FFFFFF" />
+    <!--  region: Navigation  -->
+    <SolidColorBrush x:Key="Brush.Navigation" Color="#FFF8FAFC" />
+    <SolidColorBrush x:Key="Brush.Navigation.Border" Color="#FFE2E8F0" />
 
-    <!--  Content  -->
-    <SolidColorBrush x:Key="Brush.Content" Color="#FFFFFF" />
-    <SolidColorBrush x:Key="Brush.Content.Border" Color="Gray" />
+    <!--  region: Content  -->
+    <SolidColorBrush x:Key="Brush.Content" Color="#F5F7FB" />
+    <SolidColorBrush x:Key="Brush.Content.Border" Color="#FFe9ebed" />
+    <!--  #FFF8FAFC  -->
 
-    <!--  ui:ContentDialog  -->
-    <Style BasedOn="{StaticResource Dialog.BaseStyle}" TargetType="{x:Type ui:ContentDialog}" />
-
-    <!--  ui:Card  -->
-    <Style BasedOn="{StaticResource Card.BaseStyle}" TargetType="{x:Type ui:Card}" />
-
+    <!--  region: ComboBox  -->
     <Style
-        x:Key="Card.GridStyle"
-        BasedOn="{StaticResource Card.GridBaseStyle}"
-        TargetType="{x:Type ui:Card}" />
+        x:Key="TopBar.ComboBoxStyle"
+        BasedOn="{StaticResource {x:Type ComboBox}}"
+        TargetType="ComboBox">
+        <Style.Resources>
+            <SolidColorBrush x:Key="ComboBoxForeground" Color="#99FFFFFF" />
+            <SolidColorBrush x:Key="ComboBoxItemForegroundSelected" Color="#FFFFFFFF" />
+
+            <SolidColorBrush x:Key="ComboBoxBackground" Color="#262b3b" />
+            <SolidColorBrush x:Key="ComboBoxBackgroundFocused" Color="#262b3b" />
+            <SolidColorBrush x:Key="ComboBoxBackgroundPointerOver" Color="#262b3b" />
+
+            <SolidColorBrush x:Key="ComboBoxDropDownBackground" Color="#262b3b" />
+            <SolidColorBrush x:Key="ComboBoxDropDownBorderBrush" Color="#1e222e" />
+        </Style.Resources>
+    </Style>
 
 </ResourceDictionary>

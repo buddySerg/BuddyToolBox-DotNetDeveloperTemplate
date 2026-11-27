@@ -4,7 +4,7 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml">
 
-    <!--  Typography  -->
+    <!--  region: Typography  -->
     <FontFamily x:Key="Typography.FontFamily.Base">Segoe UI, Inter, Arial</FontFamily>
     <sys:Double x:Key="Typography.FontSize.H1">24</sys:Double>
     <sys:Double x:Key="Typography.FontSize.H2">18</sys:Double>
@@ -12,18 +12,18 @@
     <sys:Double x:Key="Typography.FontSize.Body">14</sys:Double>
     <sys:Double x:Key="Typography.FontSize.Small">10</sys:Double>
 
-    <!--  Splash Screen  -->
+    <!--  region: Splash Screen  -->
     <SolidColorBrush x:Key="Brush.SplashScreen.Text" Color="#FFFFFF" />
     <SolidColorBrush x:Key="Brush.SplashScreen" Color="#262b3a" />
     <SolidColorBrush x:Key="Brush.SplashScreen.Border" Color="#151820" />
 
-    <!--  Top Bar  -->
+    <!--  region: Top Bar  -->
     <GridLength x:Key="Layout.TopBar.Height">65</GridLength>
 
-    <!--  Navigation  -->
+    <!--  region: Navigation  -->
     <sys:Double x:Key="Layout.Navigation.Width">200</sys:Double>
 
-    <!--  Content.Label  -->
+    <!--  region: Content  -->
     <Style
         x:Key="Content.Label"
         BasedOn="{StaticResource {x:Type Label}}"
@@ -34,7 +34,6 @@
         <Setter Property="FontWeight" Value="SemiBold" />
     </Style>
 
-    <!--  Content.UnderLabel  -->
     <Style
         x:Key="Content.UnderLabel"
         BasedOn="{StaticResource {x:Type Label}}"
@@ -45,6 +44,7 @@
         <Setter Property="FontWeight" Value="Normal" />
     </Style>
 
+    <!--  region : Forms  -->
     <!--  TextBlock  -->
     <Style
         x:Key="Form.LabelStyle"
@@ -89,6 +89,7 @@
         <Setter Property="Margin" Value="0,0,0,15" />
     </Style>
 
+    <!--  region : Dialog  -->
     <!--  ui:ContentDialog  -->
     <Style
         x:Key="Dialog.BaseStyle"
@@ -99,18 +100,7 @@
         <Setter Property="BorderThickness" Value="1" />
     </Style>
 
-    <Style
-        x:Key="Dialog.DarkStyle"
-        BasedOn="{StaticResource Dialog.BaseStyle}"
-        TargetType="{x:Type ui:ContentDialog}">
-        <Setter Property="Foreground" Value="#FFFFFF" />
-        <Setter Property="Background" Value="{DynamicResource Brush.Content}" />
-        <Setter Property="Border.BorderBrush" Value="{DynamicResource Brush.Content.Border}" />
-        <Style.Resources>
-            <SolidColorBrush x:Key="ContentDialogForeground" Color="#FFFFFF" />
-        </Style.Resources>
-    </Style>
-
+    <!--  region : DataGrid  -->
     <!--  ui:DataGrid  -->
     <Style
         x:Key="DataGrid.BaseStyle"
@@ -123,8 +113,10 @@
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
     </Style>
+    <!--  Apply the base style to every ui:DataGrid.  -->
     <Style BasedOn="{StaticResource DataGrid.BaseStyle}" TargetType="{x:Type ui:DataGrid}" />
 
+    <!--  region : Card  -->
     <!--  ui:Card  -->
     <Style
         x:Key="Card.BaseStyle"
@@ -138,7 +130,7 @@
 
     <!--  ui:Card / Grid  -->
     <Style
-        x:Key="Card.GridBaseStyle"
+        x:Key="Card.GridStyle"
         BasedOn="{StaticResource {x:Type ui:Card}}"
         TargetType="{x:Type ui:Card}">
         <Setter Property="Padding" Value="5" />
@@ -147,12 +139,10 @@
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
     </Style>
 
-    <!--  Navigation  -->
+    <!--  region : Navigation  -->
     <Style x:Key="Navigation.Bottom" TargetType="{x:Type StackPanel}">
         <Setter Property="Margin" Value="0,10,0,0" />
-        <Setter Property="Border.CornerRadius" Value="4" />
         <Setter Property="Orientation" Value="Horizontal" />
-        <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
 
 </ResourceDictionary>

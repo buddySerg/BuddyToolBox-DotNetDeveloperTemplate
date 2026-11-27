@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Media;
 
 using Wpf.Ui.Appearance;
 using Wpf.Ui.Controls;
@@ -11,10 +12,12 @@ namespace BTB.Core.Theme;
 /// </summary>
 public sealed class ThemeService : IThemeService
 {
+    #region private Fields
     /// <summary>
     /// Defines the relative path to the application's custom theme resources.
     /// </summary>
     private const string ThemePath = "/Resources/Themes/";
+    #endregion
 
     #region Public Properties
     /// <summary>
@@ -23,6 +26,7 @@ public sealed class ThemeService : IThemeService
     public AppTheme CurrentTheme { get; private set; } = AppTheme.Dark;
     #endregion
 
+    #region Public Methods
     /// <summary>
     /// Applies the specified theme to the application, including WPF UI controls and the application's custom resource dictionaries.
     /// </summary>
@@ -30,18 +34,25 @@ public sealed class ThemeService : IThemeService
     {
         CurrentTheme = theme;
 
-        ApplicationTheme wpfTheme = theme switch
+        ApplyCustomTheme(theme);
+
+        ApplicationTheme applicationTheme = theme switch
         {
             AppTheme.Dark => ApplicationTheme.Dark,
             AppTheme.Light => ApplicationTheme.Light,
             _ => ApplicationTheme.Dark
         };
 
-        // Theme for WPF UI Controls
-        ApplicationThemeManager.Apply(wpfTheme, WindowBackdropType.Mica);
-        ApplyCustomTheme(theme);
-    }
+        ApplicationThemeManager.Apply(applicationTheme, WindowBackdropType.Mica);
 
+        if (Application.Current.Resources["AccentColor"] is Color accentColor)
+        {
+            ApplicationAccentColorManager.Apply(accentColor, applicationTheme);
+        }
+    }
+    #endregion
+
+    #region Private Methods
     /// <summary>
     /// Applies the specified custom theme by updating the application's merged resource dictionaries.
     /// </summary>
@@ -63,4 +74,5 @@ public sealed class ThemeService : IThemeService
             Source = new Uri($"{ThemePath}Theme.{theme}.xaml", UriKind.Relative)
         });
     }
+    #endregion
 }

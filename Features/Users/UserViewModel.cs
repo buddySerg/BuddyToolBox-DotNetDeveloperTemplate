@@ -76,6 +76,8 @@ public partial class UserViewModel : LocalizedViewModelBase
     public string GenderDisplay => Gender is null ? string.Empty : Translate[$"Common.Gender.{Gender}"];
     public string RoleDisplay => Translate[$"Features.Users.Role.{Role}"];
 
+    public string AddressDisplay => $"{street}\n{zipCode} {city}".Trim();
+
     // Constructor
     public UserViewModel(User user, ILocalizationService localization) : base(localization)
     {

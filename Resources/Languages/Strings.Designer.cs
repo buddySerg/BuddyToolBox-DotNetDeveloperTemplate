@@ -414,6 +414,15 @@ namespace BTB.Resources.Languages {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Address ähnelt.
+        /// </summary>
+        internal static string Features_Users_Address {
+            get {
+                return ResourceManager.GetString("Features.Users.Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Add user ähnelt.
         /// </summary>
         internal static string Features_Users_AddUser {
@@ -578,7 +587,16 @@ namespace BTB.Resources.Languages {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Lastname ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Active ähnelt.
+        /// </summary>
+        internal static string Features_Users_IsActive {
+            get {
+                return ResourceManager.GetString("Features.Users.IsActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Last name ähnelt.
         /// </summary>
         internal static string Features_Users_LastName {
             get {
@@ -610,6 +628,15 @@ namespace BTB.Resources.Languages {
         internal static string Features_Users_Login {
             get {
                 return ResourceManager.GetString("Features.Users.Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Logout ähnelt.
+        /// </summary>
+        internal static string Features_Users_Logout {
+            get {
+                return ResourceManager.GetString("Features.Users.Logout", resourceCulture);
             }
         }
         

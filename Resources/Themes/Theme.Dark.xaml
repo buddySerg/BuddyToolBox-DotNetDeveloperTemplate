@@ -3,37 +3,56 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml">
 
-    <!--  Window  -->
-    <SolidColorBrush x:Key="Brush.Window.Background" Color="#2b3142" />
+    <!--  region: WPFUI Colors  -->
 
-    <!--  TopBar  -->
+    <!--  Do not rename. It is used by the IThemeService.  -->
+    <Color x:Key="AccentColor">#FF0199ea</Color>
+
+    <!--  Textbox  -->
+    <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="#262b3b" />
+
+    <!--  Content Dialog  -->
+    <SolidColorBrush x:Key="ContentDialogBackground" Color="#FF2e3547" />
+    <SolidColorBrush x:Key="ContentDialogTopOverlay" Color="#FF2b3142" />
+
+    <!--  ComboBox  -->
+    <SolidColorBrush x:Key="ComboBoxForeground" Color="#99FFFFFF" />
+    <SolidColorBrush x:Key="ComboBoxItemForegroundSelected" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="ComboBoxBackgroundFocused" Color="#262b3b" />
+    <SolidColorBrush x:Key="ComboBoxBackgroundPointerOver" Color="#262b3b" />
+    <SolidColorBrush x:Key="ComboBoxDropDownBackground" Color="#262b3b" />
+    <SolidColorBrush x:Key="ComboBoxDropDownBorderBrush" Color="#1e222e" />
+
+    <!--  region: TopBar  -->
     <SolidColorBrush x:Key="Brush.TopBar" Color="#262b3b" />
-    <SolidColorBrush x:Key="Brush.TopBar.Text" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="Brush.TopBar.Text" Color="#99FFFFFF" />
+    <SolidColorBrush x:Key="Brush.TopBar.Icon" Color="#FF0199ea" />
     <SolidColorBrush x:Key="Brush.TopBar.Border" Color="#1e222e" />
 
-    <!--  Navigation  -->
+    <!--  region: Navigation  -->
     <SolidColorBrush x:Key="Brush.Navigation" Color="#2b3142" />
     <SolidColorBrush x:Key="Brush.Navigation.Border" Color="#232836" />
 
-    <!--  Content  -->
+    <!--  region: Content  -->
     <SolidColorBrush x:Key="Brush.Content" Color="#2e3547" />
     <SolidColorBrush x:Key="Brush.Content.Border" Color="#282d3d" />
 
-    <!--  ui:ContentDialog  -->
-    <Style BasedOn="{StaticResource Dialog.BaseStyle}" TargetType="{x:Type ui:ContentDialog}">
-        <Setter Property="Background" Value="{DynamicResource Brush.Content}" />
-        <Setter Property="BorderBrush" Value="#2b3142" />
+    <!--  region: ComboBox  -->
+    <Style
+        x:Key="TopBar.ComboBoxStyle"
+        BasedOn="{StaticResource {x:Type ComboBox}}"
+        TargetType="ComboBox">
         <Style.Resources>
-            <SolidColorBrush x:Key="ContentDialogForeground" Color="#ffffff" />
+            <SolidColorBrush x:Key="ComboBoxForeground" Color="#99FFFFFF" />
+            <SolidColorBrush x:Key="ComboBoxItemForegroundSelected" Color="#FFFFFFFF" />
+
+            <SolidColorBrush x:Key="ComboBoxBackground" Color="#262b3b" />
+            <SolidColorBrush x:Key="ComboBoxBackgroundFocused" Color="#262b3b" />
+            <SolidColorBrush x:Key="ComboBoxBackgroundPointerOver" Color="#262b3b" />
+
+            <SolidColorBrush x:Key="ComboBoxDropDownBackground" Color="#262b3b" />
+            <SolidColorBrush x:Key="ComboBoxDropDownBorderBrush" Color="#1e222e" />
         </Style.Resources>
     </Style>
-
-    <!--  ui:Card  -->
-    <Style BasedOn="{StaticResource Card.BaseStyle}" TargetType="{x:Type ui:Card}" />
-
-    <Style
-        x:Key="Card.GridStyle"
-        BasedOn="{StaticResource Card.GridBaseStyle}"
-        TargetType="{x:Type ui:Card}" />
 
 </ResourceDictionary>

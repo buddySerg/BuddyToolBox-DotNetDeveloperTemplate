@@ -28,9 +28,7 @@ public partial class ThemeViewModel : ObservableObject
     private AppTheme _selectedTheme;
     #endregion
 
-    /// <summary>
-    /// Cunstructor
-    /// </summary>
+    // Constructor
     public ThemeViewModel(IThemeService themeService, IUserSettingsService userSettingsService)
     {
         _themeService = themeService;

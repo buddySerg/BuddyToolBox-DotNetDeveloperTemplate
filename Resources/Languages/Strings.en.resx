@@ -291,7 +291,7 @@ Do you want to discard them and reload the settings?</value>
     <value>First name</value>
   </data>
   <data name="Features.Users.LastName" xml:space="preserve">
-    <value>Lastname</value>
+    <value>Last name</value>
   </data>
   <data name="Features.Users.Street" xml:space="preserve">
     <value>Street</value>
@@ -372,5 +372,14 @@ Do you want to discard them?</value>
   </data>
   <data name="Features.Users.Active" xml:space="preserve">
     <value>Active</value>
+  </data>
+  <data name="Features.Users.Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="Features.Users.IsActive" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Features.Users.Address" xml:space="preserve">
+    <value>Address</value>
   </data>
 </root>

@@ -8,146 +8,147 @@
     Title="Buddy Toolbox"
     Width="1440"
     Height="900"
-    Background="{DynamicResource Brush.Window.Background}"
     FontFamily="{DynamicResource Typography.FontFamily.Base}"
     FontSize="{DynamicResource Typography.FontSize.Body}"
     mc:Ignorable="d">
 
-    <Grid Background="{DynamicResource Brush.Window.Background}">
+    <Grid SnapsToDevicePixels="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="{DynamicResource Layout.TopBar.Height}" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <!--  Top Bar  -->
-        <Border Grid.Row="0" Background="{DynamicResource Brush.TopBar}">
 
-            <Grid Background="{DynamicResource Brush.TopBar}">
+        <Grid Grid.Row="0" Background="{DynamicResource Brush.TopBar}">
 
-                <!--  Links / Mitte / Rechts  -->
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
+            <!--  Links / Mitte / Rechts  -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
-                <!--  Links: Logo + Text  -->
-                <Grid Grid.Column="0">
-                    <Image
-                        Height="50"
-                        Margin="5,5,0,0"
-                        HorizontalAlignment="Left"
-                        Source="/Resources/Images/Logo.png" />
+            <!--  Links: Logo + Text  -->
+            <Grid Grid.Column="0">
+                <Image
+                    Height="50"
+                    Margin="5,5,0,0"
+                    HorizontalAlignment="Left"
+                    Source="/Resources/Images/Logo.png" />
 
+                <TextBlock
+                    Margin="75,40,0,0"
+                    FontSize="10"
+                    Foreground="{DynamicResource Brush.TopBar.Text}"
+                    Text="{Binding Translate[App.Quote]}" />
+                <Border
+                    Margin="245,5,0,0"
+                    Padding="2"
+                    VerticalAlignment="Top"
+                    Background="{StaticResource Brush.TopBar.Icon}"
+                    CornerRadius="4">
                     <TextBlock
-                        Margin="75,40,0,0"
                         FontSize="10"
                         Foreground="{DynamicResource Brush.TopBar.Text}"
-                        Text="{Binding Translate[App.Quote]}" />
-                    <Border
-                        Margin="245,5,0,0"
-                        Padding="2"
-                        VerticalAlignment="Top"
-                        Background="#0199ea"
-                        CornerRadius="4">
-                        <TextBlock
-                            FontSize="10"
-                            Foreground="{DynamicResource Brush.TopBar.Text}"
-                            Text="{Binding AppVersion}" />
-                    </Border>
-                </Grid>
-
-                <!--  Rechts: Infos, Auswahl & User  -->
-                <StackPanel
-                    Grid.Column="2"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Center"
-                    Orientation="Horizontal">
-
-                    <!--  Culture Selector  -->
-                    <ComboBox
-                        Margin="10,0,0,0"
-                        ItemsSource="{Binding LocalizationViewModel.Cultures}"
-                        SelectedItem="{Binding LocalizationViewModel.SelectedCulture}">
-
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding DisplayName}" />
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-
-                    <!--  Theme Selector  -->
-                    <ComboBox
-                        Margin="10,0,10,0"
-                        ItemsSource="{Binding ThemeViewModel.Themes}"
-                        SelectedItem="{Binding ThemeViewModel.SelectedTheme}">
-
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding}" />
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-
-                    <!--  User, if user logged in  -->
-                    <Border
-                        Margin="0,0,10,0"
-                        VerticalAlignment="Center"
-                        Visibility="{Binding ShowUserName, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <TextBlock
-                            FontWeight="SemiBold"
-                            Foreground="{DynamicResource Brush.TopBar.Text}"
-                            Text="{Binding UserNameDisplay}" />
-                    </Border>
-
-                    <!--  Login Button, if user not logged in  -->
-                    <Button
-                        Margin="0,0,10,0"
-                        Padding="10"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        Command="{Binding LoginCommand}"
-                        Cursor="Hand"
-                        ToolTip="{Binding Translate[Features.Users.Login]}"
-                        Visibility="{Binding ShowLoginButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-
-                        <ui:SymbolIcon
-                            Filled="True"
-                            FontSize="20"
-                            Foreground="{DynamicResource Brush.TopBar.Text}"
-                            Symbol="Person24" />
-
-                    </Button>
-
-                    <Button
-                        Margin="0,0,10,0"
-                        Padding="10"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        Command="{Binding LogoutCommand}"
-                        Cursor="Hand"
-                        ToolTip="{Binding Translate[Features.Users.Logout]}"
-                        Visibility="{Binding ShowLoginButton, Converter={StaticResource InverseBoolToVisibilityConverter}}">
-
-                        <ui:SymbolIcon
-                            Filled="True"
-                            FontSize="20"
-                            Foreground="{DynamicResource Brush.TopBar.Text}"
-                            Symbol="SignOut20" />
-
-                    </Button>
-
-                </StackPanel>
-
-                <!--  TopBar Separator  -->
-                <Rectangle
-                    Grid.ColumnSpan="3"
-                    Height="2"
-                    VerticalAlignment="Bottom"
-                    Fill="{DynamicResource Brush.TopBar.Border}" />
+                        Text="{Binding AppVersion}" />
+                </Border>
             </Grid>
-        </Border>
+
+            <!--  Rechts: Infos, Auswahl & User  -->
+            <StackPanel
+                Grid.Column="2"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+
+                <!--  Culture Selector  -->
+                <ComboBox
+                    Width="110"
+                    Margin="10,0,0,0"
+                    ItemsSource="{Binding LocalizationViewModel.Cultures}"
+                    SelectedItem="{Binding LocalizationViewModel.SelectedCulture}"
+                    Style="{StaticResource TopBar.ComboBoxStyle}">
+
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding DisplayName}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <!--  Theme Selector  -->
+                <ComboBox
+                    Width="110"
+                    Margin="10,0,10,0"
+                    ItemsSource="{Binding ThemeViewModel.Themes}"
+                    SelectedItem="{Binding ThemeViewModel.SelectedTheme}"
+                    Style="{StaticResource TopBar.ComboBoxStyle}">
+
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <!--  User, if user logged in  -->
+                <Border
+                    Margin="0,0,10,0"
+                    VerticalAlignment="Center"
+                    Visibility="{Binding ShowUserName, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBlock
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource Brush.TopBar.Text}"
+                        Text="{Binding UserNameDisplay}" />
+                </Border>
+
+                <!--  Login Button, if user not logged in  -->
+                <Button
+                    Margin="0,0,10,0"
+                    Padding="5"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Command="{Binding LoginCommand}"
+                    Cursor="Hand"
+                    ToolTip="{Binding Translate[Features.Users.Login]}"
+                    Visibility="{Binding ShowLoginButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                    <ui:SymbolIcon
+                        Filled="True"
+                        FontSize="24"
+                        Foreground="{StaticResource Brush.TopBar.Icon}"
+                        Symbol="Person24" />
+
+                </Button>
+
+                <Button
+                    Margin="0,0,10,0"
+                    Padding="5"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Command="{Binding LogoutCommand}"
+                    Cursor="Hand"
+                    ToolTip="{Binding Translate[Features.Users.Logout]}"
+                    Visibility="{Binding ShowLoginButton, Converter={StaticResource InverseBoolToVisibilityConverter}}">
+
+                    <ui:SymbolIcon
+                        Filled="False"
+                        FontSize="24"
+                        Foreground="{StaticResource Brush.TopBar.Icon}"
+                        Symbol="SignOut20" />
+
+                </Button>
+
+            </StackPanel>
+
+            <!--  TopBar Separator  -->
+            <Rectangle
+                Grid.ColumnSpan="3"
+                Height="1"
+                VerticalAlignment="Bottom"
+                Fill="{DynamicResource Brush.TopBar.Border}" />
+        </Grid>
 
         <!--  Links: Navigation Rechts: Content  -->
         <Grid
@@ -169,7 +170,7 @@
                 VerticalAlignment="Stretch"
                 Background="{DynamicResource Brush.Navigation}"
                 BorderBrush="{DynamicResource Brush.Navigation.Border}"
-                BorderThickness="0,0,1,0">
+                BorderThickness="0,0,0,0">
                 <ContentControl Content="{Binding NavigationViewModel}" />
             </Border>
 
@@ -186,6 +187,8 @@
                 <ContentControl
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
                     Content="{Binding NavigationViewModel.CurrentViewModel}" />
             </Border>
         </Grid>

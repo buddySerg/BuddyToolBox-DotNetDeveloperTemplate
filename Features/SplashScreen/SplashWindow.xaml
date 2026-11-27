@@ -75,7 +75,7 @@
                     <TextBlock
                         Margin="10,0,0,0"
                         FontWeight="Medium"
-                        Text="{Binding AppVersion, StringFormat=(Version: {0})}" />
+                        Text="{Binding AppVersion, StringFormat=( {0} )}" />
                 </StackPanel>
 
                 <TextBlock
@@ -83,7 +83,7 @@
                     Text="{Binding Translate[App.Description]}"
                     TextWrapping="Wrap" />
 
-                <!--<TextBlock Margin="0,10,0,0" Text="{Binding Copyright}" />-->
+                <TextBlock Margin="0,10,0,0" Text="{Binding Copyright}" />
 
             </StackPanel>
 

@@ -39,7 +39,7 @@
             HorizontalScrollBarVisibility="Disabled"
             VerticalScrollBarVisibility="Auto">
 
-            <ui:Card>
+            <ui:Card VerticalAlignment="Stretch" VerticalContentAlignment="Top">
 
                 <Grid Grid.IsSharedSizeScope="True">
 
@@ -90,7 +90,7 @@
                         Grid.Row="1"
                         Grid.Column="2"
                         Style="{StaticResource Form.TextBoxStyle}"
-                        Text="{Binding User.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding User.FirstName}" />
 
                     <TextBlock
                         Grid.Row="2"
@@ -101,7 +101,7 @@
                         Grid.Row="2"
                         Grid.Column="2"
                         Style="{StaticResource Form.TextBoxStyle}"
-                        Text="{Binding User.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding User.LastName}" />
 
                     <TextBlock
                         Grid.Row="3"
@@ -112,7 +112,7 @@
                         Grid.Row="3"
                         Grid.Column="2"
                         Style="{StaticResource Form.TextBoxStyle}"
-                        Text="{Binding User.Initials, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding User.Initials}" />
 
                     <TextBlock
                         Grid.Row="4"
@@ -123,7 +123,7 @@
                         Grid.Row="4"
                         Grid.Column="2"
                         Style="{StaticResource Form.TextBoxStyle}"
-                        Text="{Binding User.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding User.Email}" />
 
                     <TextBlock
                         Grid.Row="5"
@@ -134,7 +134,7 @@
                         Grid.Row="5"
                         Grid.Column="2"
                         Style="{StaticResource Form.TextBoxStyle}"
-                        Text="{Binding User.Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding User.Phone, Mode=TwoWay}" />
 
                     <TextBlock
                         Grid.Row="6"
@@ -145,7 +145,7 @@
                         Grid.Row="6"
                         Grid.Column="2"
                         Style="{StaticResource Form.TextBoxStyle}"
-                        Text="{Binding User.Street, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding User.Street}" />
 
                     <TextBlock
                         Grid.Row="7"
@@ -156,7 +156,7 @@
                         Grid.Row="7"
                         Grid.Column="2"
                         Style="{StaticResource Form.TextBoxStyle}"
-                        Text="{Binding User.ZipCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding User.ZipCode}" />
 
                     <TextBlock
                         Grid.Row="8"
@@ -167,7 +167,7 @@
                         Grid.Row="8"
                         Grid.Column="2"
                         Style="{StaticResource Form.TextBoxStyle}"
-                        Text="{Binding User.City, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding User.City}" />
 
                     <TextBlock
                         Grid.Row="9"
@@ -178,7 +178,7 @@
                         Grid.Row="9"
                         Grid.Column="2"
                         Style="{StaticResource Form.TextBoxStyle}"
-                        Text="{Binding User.Country, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding User.Country}" />
 
                     <CheckBox
                         Grid.Row="10"
@@ -210,7 +210,7 @@
                         Grid.Row="12"
                         Grid.Column="2"
                         Style="{StaticResource Form.TextBoxStyle}"
-                        Text="{Binding User.UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding User.UserName}" />
 
                     <TextBlock
                         Grid.Row="13"
@@ -220,7 +220,7 @@
                     <ui:PasswordBox
                         Grid.Row="13"
                         Grid.Column="2"
-                        Password="{Binding User.NewPassword, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
+                        Password="{Binding User.NewPassword}"
                         Style="{StaticResource Form.TextBoxStyle}" />
 
                 </Grid>
@@ -235,12 +235,12 @@
                 Appearance="Primary"
                 Command="{Binding SaveCommand}"
                 Content="{Binding Translate[Common.Save]}"
-                Icon="{ui:SymbolIcon Symbol=Save24}" />
+                Icon="{ui:SymbolIcon Symbol=Save20}" />
             <ui:Button
                 Margin="10,0,0,0"
                 Command="{Binding CancelCommand}"
                 Content="{Binding Translate[Common.Cancel]}"
-                Icon="{ui:SymbolIcon Symbol=Dismiss24}" />
+                Icon="{ui:SymbolIcon Symbol=Dismiss20}" />
         </StackPanel>
 
     </Grid>
